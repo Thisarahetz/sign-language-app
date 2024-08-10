@@ -1,5 +1,5 @@
 {
-  "name": "sass_salon",
+  "name": "sign-language-app",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -25,6 +25,8 @@
     "migrate:seed": "tsx ./src/database/seed.ts"
   },
   "dependencies": {
+     "@nestjs/jwt": "^10.2.0",
+    "class-validator": "^0.14.1",
     "@nestjs/cache-manager": "^2.2.2",
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.2.0",
