@@ -3,18 +3,9 @@ import { Pool } from 'pg';
 const nodeCmd = require('node-cmd');
 import 'dotenv/config';
 import * as schema from './schema';
-import tenant, { NewTenant } from './schema/tenant';
 import user, { NewUser } from './schema/user';
 
-//create tenant data use ITenant interface
-const tenant_data: NewTenant[] = [
-  {
-    id: 1,
-    companyName: 'localhost',
-    subDomain: 'localhost',
-    isActive: true,
-  },
-];
+
 
 //create user data use IUser interface
 const user_data: NewUser[] = [
@@ -38,7 +29,7 @@ const main = async () => {
 
   //insert Tenant data
   console.log('Inserting Tenant data...');
-  await db.insert(tenant).values(tenant_data).execute();
+
 
   console.log('Inserting user data...');
   await db.insert(user).values(user_data).execute();

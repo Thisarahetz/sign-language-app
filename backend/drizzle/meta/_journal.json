@@ -8,6 +8,13 @@
       "when": 1720931896821,
       "tag": "0000_remarkable_odin",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1723225094303,
+      "tag": "0001_tranquil_grandmaster",
+      "breakpoints": true
     }
   ]
 }
