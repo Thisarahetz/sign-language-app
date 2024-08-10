@@ -9,7 +9,7 @@ const EnvSchema = z.object({
   DATABASE_URL: z.string(),
   ROOT_DOMAIN: z.string(),
   PORT: z.string().default("3000"),
-
+  JWT_SECRET: z.string(),
 });
 
 export type EnvSchema = z.infer<typeof EnvSchema>;

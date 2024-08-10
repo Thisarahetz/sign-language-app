@@ -15,6 +15,20 @@
       "when": 1723225094303,
       "tag": "0001_tranquil_grandmaster",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1723256262437,
+      "tag": "0002_ordinary_blade",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1723256378508,
+      "tag": "0003_milky_microchip",
+      "breakpoints": true
     }
   ]
 }

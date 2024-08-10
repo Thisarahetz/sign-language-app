@@ -4,6 +4,7 @@ import { Pool } from 'pg';
 import { PG_CONNECTION } from 'src/constants';
 import * as schema from './schema';
 import { ConfigService } from '@nestjs/config';
+import env from '@/env';
 
 @Global()
 @Module({
@@ -12,12 +13,10 @@ import { ConfigService } from '@nestjs/config';
       provide: PG_CONNECTION,
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
-        const connectionString = configService.get<string>(
-          process.env.DATABASE_URL,
-        );
+        const connectionString = env.DATABASE_URL;
         const pool = new Pool({
           connectionString,
-          ssl: true,
+          ssl: false,
         });
 
         return drizzle(pool, { schema });

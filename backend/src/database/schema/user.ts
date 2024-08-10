@@ -25,6 +25,7 @@ export const user = pgTable('users', {
   createdAt: timestamp("created_at", { mode: "string" }).notNull().defaultNow(),
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
   role: roleEnum('role').notNull().default('user'),
+  user_social_id: varchar('user_social_id').default(null),
  
 });
 
