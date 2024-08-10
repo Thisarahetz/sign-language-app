@@ -1,18 +1,19 @@
 import Nav from "../../Components/Nav";
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "../Dashboard";
+import Login from "../Login";
+import SignUp from "../SignUp";
 
 function Router() {
   return (
     <>
-      <body data-barba="wrapper">
-        <div className="page-wrapper">
-          <Nav />
-          <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Routes>
-        </div>
-      </body>
+      <Nav />
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        
+      </Routes>
     </>
   );
 }
