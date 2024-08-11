@@ -12,13 +12,13 @@ import { clearCustomerAndCoClientID } from "@redux/OrderSlice";
 
 const DASHBOARD_FIRST_SECTION = [
   {
-    title: DASHBOARD_CONTENTS.MANAGEMENT_ORDERS,
+    title: DASHBOARD_CONTENTS.MANAGEMENT_LEARN,
     icon: "/images/Drivers.svg",
     key: DASHBOARD_CONTENTS_KEYS.MANAGEMENT_ORDERS_KEY,
     route: APP_ROUTES.CUSTOMER,
     dropdown: [
       {
-        title: DASHBOARD_CONTENTS.MANAGEMENT_ORDERS_CUSTOMER,
+        title: DASHBOARD_CONTENTS.MANAGEMENT_MODULE,
         icon: "/images/Drivers.svg",
         key: DASHBOARD_CONTENTS_KEYS.MANAGEMENT_ORDERS_CUSTOMER_KEY,
         route: APP_ROUTES.ORDER_CUSTOMER,

@@ -40,6 +40,9 @@ async function bootstrap() {
   );
   app.setGlobalPrefix('api');
 
+  //allow cors
+  app.enableCors();
+
     // setup public static folder
     app.useStaticAssets(join(__dirname, '..', '/public'), {
       index: false,

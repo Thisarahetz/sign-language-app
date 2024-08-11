@@ -1,7 +1,7 @@
 import APICLIENT from "@api/Axios";
 
 export const SignInApiCall = async (email: string, password: string) => {
-  const response = await APICLIENT.post("auth/admin/login", {
+  const response = await APICLIENT.post("auth/login", {
     email,
     password,
   });
