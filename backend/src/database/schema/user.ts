@@ -9,6 +9,8 @@ import {
   boolean,
 } from 'drizzle-orm/pg-core';
 import { is, relations, sql } from 'drizzle-orm';
+import score from './score';
+
 
 
 export type User = typeof user.$inferSelect;
@@ -26,8 +28,14 @@ export const user = pgTable('users', {
   updatedAt: timestamp("updated_at", { mode: "string" }).notNull().defaultNow(),
   role: roleEnum('role').notNull().default('user'),
   user_social_id: varchar('user_social_id').default(null),
- 
+
 });
+
+
+
+export const userRelation = relations(user, ({ many }) => ({
+  userToScore: many(score)
+}));
 
 
 

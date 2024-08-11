@@ -12,7 +12,6 @@ const user_data: NewUser[] = [
   {
     email: 'superadmin@gmail.com',
     role: 'super_admin',
-    tenantId: 1,
     firstName: 'Super',
     lastName: 'Admin',
     password: '123456',
@@ -26,10 +25,6 @@ const main = async () => {
   });
 
   const db = drizzle(client);
-
-  //insert Tenant data
-  console.log('Inserting Tenant data...');
-
 
   console.log('Inserting user data...');
   await db.insert(user).values(user_data).execute();

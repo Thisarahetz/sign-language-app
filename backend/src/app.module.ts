@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { DrizzleModule } from './database/drizzle.module';
 import { RequestContextModule } from 'nestjs-request-context';
+import { LearnModule } from './learn/learn.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { RequestContextModule } from 'nestjs-request-context';
     AuthModule,
     DrizzleModule,
     UserModule,
+    LearnModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -22,6 +22,7 @@
     "migrate:generate": "drizzle-kit generate",
     "migrate:execute": "drizzle-kit push",
     "migrate:rollback": "drizzle-kit rollback:pg",
+    "drizzle:studio": "drizzle-kit studio",
     "migrate:seed": "tsx ./src/database/seed.ts"
   },
   "dependencies": {

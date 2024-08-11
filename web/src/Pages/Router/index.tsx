@@ -4,6 +4,7 @@ import Dashboard from "../Dashboard";
 import Login from "../Login";
 import SignUp from "../SignUp";
 import Home from "../Home";
+import Learn from "../Learn";
 
 function Router() {
   return (
@@ -14,6 +15,7 @@ function Router() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/learn" element={<Learn/>} />
         
       </Routes>
     </>

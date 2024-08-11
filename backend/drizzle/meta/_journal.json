@@ -5,29 +5,15 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1720931896821,
-      "tag": "0000_remarkable_odin",
+      "when": 1723357308089,
+      "tag": "0000_ordinary_rogue",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "7",
-      "when": 1723225094303,
-      "tag": "0001_tranquil_grandmaster",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1723256262437,
-      "tag": "0002_ordinary_blade",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1723256378508,
-      "tag": "0003_milky_microchip",
+      "when": 1723357575623,
+      "tag": "0001_amused_brood",
       "breakpoints": true
     }
   ]
