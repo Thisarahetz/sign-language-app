@@ -1,1 +1,0 @@
-ALTER TABLE "module_to_score" DROP COLUMN IF EXISTS "module_to_score_id";

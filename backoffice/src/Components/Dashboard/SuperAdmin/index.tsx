@@ -15,13 +15,13 @@ const DASHBOARD_FIRST_SECTION = [
     title: DASHBOARD_CONTENTS.MANAGEMENT_LEARN,
     icon: "/images/Drivers.svg",
     key: DASHBOARD_CONTENTS_KEYS.MANAGEMENT_ORDERS_KEY,
-    route: APP_ROUTES.CUSTOMER,
+    route: APP_ROUTES.MODULE,
     dropdown: [
       {
         title: DASHBOARD_CONTENTS.MANAGEMENT_MODULE,
         icon: "/images/Drivers.svg",
         key: DASHBOARD_CONTENTS_KEYS.MANAGEMENT_ORDERS_CUSTOMER_KEY,
-        route: APP_ROUTES.ORDER_CUSTOMER,
+        route: APP_ROUTES.MODULE,
       },
 
       {
@@ -78,7 +78,7 @@ const DASHBOARD_LAST_SECTION = [
     title: DASHBOARD_CONTENTS.REPORT,
     icon: "/images/Reports.svg",
     key: DASHBOARD_CONTENTS_KEYS.REPORT_KEY,
-    route: APP_ROUTES.DRIVERS,
+    route: APP_ROUTES.MODULE,
     dropdown: [
       {
         title: DASHBOARD_CONTENTS.MANAGEMENT_REPORT_CUSTOMER,

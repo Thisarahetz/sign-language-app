@@ -10,6 +10,8 @@ import UsersAddPage from "@pages/User/Add";
 import UsersEditPage from "@pages/User/Edit";
 import MyAccount from "@pages/MyAccount";
 import OTPValidation from "@pages/OtpValidation";
+import ModuleTable from "@components/Tables/Module";
+import ModuleManagePage from "@pages/Module/Manage";
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path={APP_ROUTES.USERS} element={<UsersManagePage />} />
           <Route path={APP_ROUTES.ADD_USER} element={<UsersAddPage />} />
           <Route path={APP_ROUTES.EDIT_USER} element={<UsersEditPage />} />
+
+          <Route path={APP_ROUTES.MODULE} element={<ModuleManagePage />} />
       
 
           {/* My Account */}

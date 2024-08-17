@@ -12,7 +12,7 @@ export class LearnController {
     return this.learnService.create(createLearnDto);
   }
 
-  @Get()
+  @Get('module')
   findAll() {
     return this.learnService.findAll();
   }

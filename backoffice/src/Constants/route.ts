@@ -1,5 +1,6 @@
 const APP_ROUTES = {
   DASHBOARD: "/dashboard",
+  MODULE: "/module",
   DRIVERS: "/drivers",
   DRIVERS_PENDING: "/drivers-pending",
   DRIVERS_INFO: "/drivers/info",

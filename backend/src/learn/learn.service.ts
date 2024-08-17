@@ -43,8 +43,29 @@ export class LearnService {
     }
   }
 
-  findAll() {
-    return `This action returns all learn`;
+  async findAll() {
+    try {
+      const result = await this.conn
+        .select({
+          id: schema.module.id,
+          title: schema.module.title,
+          overview: schema.module.overview,
+          category: schema.module.category,
+          icon: schema.module.icon,
+          createdAt: schema.module.createdAt,
+          updatedAt: schema.module.updatedAt,
+        })
+        .from(schema.module)
+        .execute();
+
+      return {
+        status: true,
+        message: 'Module fetched successfully',
+        data: result,
+      };
+    } catch (error) {
+      return error;
+    }
   }
 
   findOne(id: number) {
