@@ -4,6 +4,8 @@ import { UpdateLearnDto } from './dto/update-learn.dto';
 import { PG_CONNECTION } from '@/constants';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import * as schema from '@/database/schema';
+import { CreateResourcesDto } from './dto/create-resouces.dto';
+import { eq } from 'drizzle-orm';
 
 @Injectable()
 export class LearnService {
@@ -54,13 +56,59 @@ export class LearnService {
           icon: schema.module.icon,
           createdAt: schema.module.createdAt,
           updatedAt: schema.module.updatedAt,
+          resource: {
+            id: schema.resource.id,
+            name: schema.resource.name,
+            overview: schema.resource.overview,
+            video: schema.resource.video,
+            review: schema.resource.review,
+            module_id: schema.resource.module_id,
+          },
         })
         .from(schema.module)
+        .leftJoin(
+          schema.resource,
+          eq(schema.module.id, schema.resource.module_id),
+        )
         .execute();
 
       return {
         status: true,
         message: 'Module fetched successfully',
+        data: result,
+      };
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async createResources(createLearnDto: CreateResourcesDto, id: number) {
+    try {
+      const { name, overview, video } = createLearnDto;
+
+      const result = await this.conn
+        .insert(schema.resource)
+        .values({
+          name,
+          overview,
+          video,
+          module_id: id,
+        })
+        .returning({
+          insertedId: schema.resource.id,
+          name: schema.resource.name,
+          overview: schema.resource.overview,
+          video: schema.resource.video,
+          review: schema.resource.review,
+          module_id: schema.resource.module_id,
+          createdAt: schema.resource.createdAt,
+          updatedAt: schema.resource.updatedAt,
+        })
+        .execute();
+
+      return {
+        status: true,
+        message: 'Resource created successfully',
         data: result,
       };
     } catch (error) {

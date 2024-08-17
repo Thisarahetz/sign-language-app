@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { LearnService } from './learn.service';
 import { CreateLearnDto } from './dto/create-learn.dto';
 import { UpdateLearnDto } from './dto/update-learn.dto';
+import { CreateResourcesDto } from './dto/create-resouces.dto';
 
 @Controller('learn')
 export class LearnController {
@@ -16,6 +17,12 @@ export class LearnController {
   findAll() {
     return this.learnService.findAll();
   }
+
+  @Post('module/resource')
+  createResources(@Body() createLearnDto: CreateResourcesDto, @Query('id') id: string) {
+    return this.learnService.createResources(createLearnDto, +id);
+  }
+
 
   @Get(':id')
   findOne(@Param('id') id: string) {
