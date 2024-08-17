@@ -47,7 +47,7 @@ export class LearnService {
 
   async findAll() {
     try {
-      const result = await this.conn
+      let result = await this.conn
         .select({
           id: schema.module.id,
           title: schema.module.title,
@@ -56,14 +56,17 @@ export class LearnService {
           icon: schema.module.icon,
           createdAt: schema.module.createdAt,
           updatedAt: schema.module.updatedAt,
-          resource: {
+          resource:{
             id: schema.resource.id,
             name: schema.resource.name,
             overview: schema.resource.overview,
             video: schema.resource.video,
             review: schema.resource.review,
             module_id: schema.resource.module_id,
-          },
+            createdAt: schema.resource.createdAt,
+            updatedAt: schema.resource.updatedAt,
+          }
+          
         })
         .from(schema.module)
         .leftJoin(
@@ -72,10 +75,47 @@ export class LearnService {
         )
         .execute();
 
+
+        // Grouping the data
+        const groupedData = result.reduce((acc, item) => {
+          const existingModule = acc.find(module => module.id === item.id);
+          
+          if (existingModule) {
+            existingModule.resource.push(item.resource);
+          } else {
+            acc.push({
+              ...item,
+              resource: [item.resource]
+            });
+          }
+          
+          return acc;
+        }, []);
+
+
+
+        // Grouping the data by category
+        const categoryGroupedData = groupedData.reduce((acc, item) => {
+          const existingCategory = acc.find(module => module.category === item.category);
+          
+          if (existingCategory) {
+            existingCategory.module.push(item);
+          } else {
+            acc.push({
+              category: item.category,
+              module: [item]
+            });
+          }
+          
+          return acc;
+        }
+        , []);
+
+
       return {
         status: true,
         message: 'Module fetched successfully',
-        data: result,
+        data: categoryGroupedData,
       };
     } catch (error) {
       return error;
@@ -105,6 +145,8 @@ export class LearnService {
           updatedAt: schema.resource.updatedAt,
         })
         .execute();
+
+      
 
       return {
         status: true,

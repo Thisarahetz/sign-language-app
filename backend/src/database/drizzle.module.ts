@@ -14,12 +14,29 @@ import env from '@/env';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
         const connectionString = env.DATABASE_URL;
-        const pool = new Pool({
-          connectionString,
-          ssl: false,
-        });
+        const maxRetries = 5; // Max number of retries
+        const retryDelay = 3000; // Delay between retries in ms (3 seconds)
+        let attempt = 0;
+        let pool: Pool;
 
-        return drizzle(pool, { schema });
+        while (attempt < maxRetries) {
+          try {
+            pool = new Pool({
+              connectionString,
+              ssl: false,
+            });
+
+            await pool.query('SELECT 1'); // Test the connection
+
+            return drizzle(pool, { schema });
+          } catch (error) {
+            console.error(`Attempt ${attempt + 1} failed. Retrying in ${retryDelay / 1000} seconds...`, error);
+            attempt++;
+            await new Promise((resolve) => setTimeout(resolve, retryDelay));
+          }
+        }
+
+        throw new Error('Could not establish a database connection after several attempts.');
       },
     },
   ],

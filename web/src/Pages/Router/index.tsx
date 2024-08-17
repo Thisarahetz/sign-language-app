@@ -5,6 +5,7 @@ import Login from "../Login";
 import SignUp from "../SignUp";
 import Home from "../Home";
 import Learn from "../Learn";
+import Practice from "../Practice";
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/learn" element={<Learn/>} />
+        <Route path="/practice" element={<Practice/>} />
         
       </Routes>
     </>
