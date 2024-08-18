@@ -1,8 +1,17 @@
 import React from "react";
 
-const SlowSpeedButton = () => {
+interface SlowSpeedButtonProps {
+  onClick?: () => void;
+}
+
+
+const SlowSpeedButton = (
+  props: SlowSpeedButtonProps
+) => {
   return (
-    <a href="#" className="video-button-wrapper w-inline-block">
+    <button className="video-button-wrapper w-inline-block" onClick={
+      props.onClick
+    }>
       <div className="icon-1x1-small w-embed">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +35,7 @@ const SlowSpeedButton = () => {
           />
         </svg>
       </div>
-    </a>
+    </button>
   );
 };
 

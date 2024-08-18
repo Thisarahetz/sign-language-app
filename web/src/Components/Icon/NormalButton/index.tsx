@@ -1,8 +1,16 @@
 import React from "react";
 
-const NormalButton = () => {
+interface NormalButtonProps {
+  onClick?: () => void;
+}
+
+const NormalButton = (
+  props: NormalButtonProps
+) => {
   return (
-    <a href="#" className="video-button-wrapper w-inline-block">
+    <button className="video-button-wrapper w-inline-block" onClick={
+      props.onClick
+    }>
       <div className="icon-1x1-small w-embed">
         <svg
           id="normalBtn"
@@ -26,7 +34,7 @@ const NormalButton = () => {
           />
         </svg>
       </div>
-    </a>
+    </button>
   );
 };
 

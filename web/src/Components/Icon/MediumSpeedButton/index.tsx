@@ -1,8 +1,17 @@
 import React from "react";
 
-const MediumSpeedButton = () => {
+interface MediumSpeedButtonProps {
+  onClick?: () => void;
+}
+
+const MediumSpeedButton = (
+  props: MediumSpeedButtonProps
+
+) => {
   return (
-    <a href="#" className="video-button-wrapper w-inline-block">
+    <button className="video-button-wrapper w-inline-block" onClick={
+      props.onClick
+    }>
       <div className="icon-1x1-small w-embed">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +31,7 @@ const MediumSpeedButton = () => {
           />
         </svg>
       </div>
-    </a>
+    </button>
   );
 };
 
