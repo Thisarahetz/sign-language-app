@@ -89,7 +89,7 @@ function Learn() {
                         )}
                     </div>
                   </div>
-                  <div className="resource-item-warapper">
+                  {/* <div className="resource-item-warapper">
                     <div className="spacer-2"></div>
                     <h3 className="heading-style-h3">Tools</h3>
                     <div className="spacer-2"></div>
@@ -146,7 +146,7 @@ function Learn() {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

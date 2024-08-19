@@ -37,7 +37,7 @@ function Card({
         if (!isResources) {
           navigate("resource", { state: { module_id } });
         } else {
-          navigate("practice", { state: { module_id } });
+          navigate("overview", { state: { module_id } });
         }
       }}
     >

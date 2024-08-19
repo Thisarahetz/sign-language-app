@@ -2,9 +2,13 @@ import { useMutation } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { SignUpApiCall } from "../../Api/Services/Auth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import useUserStore from "../../Store";
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const setUser = useUserStore((state) => state.setUser);
+
   const [state, setState] = useState({
     firstname: "",
     lastname: "",
@@ -17,18 +21,30 @@ export default function SignUp() {
   const signUpmutaion = useMutation({
     mutationFn: (values: any) => SignUpApiCall(values),
     onSuccess: (data: any) => {
-      navigate('dashboard');
-      // toast.success(data.message);
+      console.log(data);
+      navigate('/dashboard');
+      toast.success(data.message);
+
+      setUser({
+        success: true,
+        data: {
+          id: data.data.id,
+          name: data.data.username,
+        },
+      });
     },
     onError: (error: any) => {
-      // toast.error(error.response.data.message);
+      toast.error(error.response.data.message);
     },
   });
 
-  const signUp = () => {
+  const signUp = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault(); 
     //check if password and reenterpassword are the same
     if (state.password !== state.reenterpassword) {
-      // toast.error("Password does not match");
+      toast.error("Password does not match");
       return;
     }
 
@@ -186,13 +202,22 @@ export default function SignUp() {
                               id="w-node-bb27abd8-2b7f-624e-870b-72a354c1d2bb-2109bf4a"
                               className="button-wrapper is-left"
                             >
-                              <input
+                              {/* <button
                                 id="w-node-bb27abd8-2b7f-624e-870b-72a354c1d2bc-2109bf4a"
                                 type="submit"
                                 className="button is-form"
                                 value="Sign Up"
                                 onClick={signUp}
-                              />
+                              /> */}
+                              <button
+                                id="w-node-bb27abd8-2b7f-624e-870b-72a354c1d2bc-2109bf4a"
+                               
+                                className="button is-form"
+                             
+                                onClick={signUp}
+                              >
+                                Sign Up
+                              </button>
                             </div>
                           </form>
                         </div>

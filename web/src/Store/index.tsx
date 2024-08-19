@@ -16,12 +16,14 @@ export const initialState: IState = {
   },
 };
 
-export const useUserStore = create<IState & {
-  setUser: (user: IUser) => void;
-  resetUser: () => void;
-}>((set) => ({
+const userStore = (set:any, get:any) => ({
   user: initialState.user,
-  setUser: (user) => set({ user }),
+  setUser: (user: IUser) => set({ user }),
   resetUser: () => set({ user: initialState.user }),
-}));
+});
+
+
+const useUserStore = create(userStore);
+
+export default useUserStore;
 

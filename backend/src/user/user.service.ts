@@ -33,6 +33,18 @@ export class UserService {
       if (userExists.length > 0)
         throw new BadRequestException('User already exists');
 
+      //username already exists
+      if (_user.username) {
+        const usernameExists = await this.conn
+          .select()
+          .from(schema.user)
+          .where(eq(schema.user.username, _user.username))
+          .execute();
+
+        if (usernameExists.length > 0)
+          throw new BadRequestException('Username already exists');
+      }
+
       await this.conn.insert(schema.user).values(_user).execute();
 
       return {

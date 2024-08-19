@@ -1,5 +1,5 @@
 {
-  "id": "3e32015a-5acb-4a6a-9fef-e85f6633a06b",
+  "id": "68368f92-51d7-41a1-87ff-e6fd9dccd302",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -134,15 +134,7 @@
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "module_title_unique": {
-          "name": "module_title_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "title"
-          ]
-        }
-      }
+      "uniqueConstraints": {}
     },
     "public.resources": {
       "name": "resources",
@@ -154,6 +146,12 @@
           "primaryKey": true,
           "notNull": true
         },
+        "title": {
+          "name": "title",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
         "name": {
           "name": "name",
           "type": "varchar",
@@ -162,6 +160,12 @@
         },
         "overview": {
           "name": "overview",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description": {
+          "name": "description",
           "type": "jsonb",
           "primaryKey": false,
           "notNull": false
@@ -216,15 +220,7 @@
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "resources_name_unique": {
-          "name": "resources_name_unique",
-          "nullsNotDistinct": false,
-          "columns": [
-            "name"
-          ]
-        }
-      }
+      "uniqueConstraints": {}
     },
     "public.scores": {
       "name": "scores",

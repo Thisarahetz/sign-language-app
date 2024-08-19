@@ -24,12 +24,12 @@ const DASHBOARD_FIRST_SECTION = [
         route: APP_ROUTES.MODULE,
       },
 
-      {
-        title: DASHBOARD_CONTENTS.MANAGEMENT_DRIVERS_ORDERS,
-        icon: "/images/Drivers.svg",
-        key: DASHBOARD_CONTENTS_KEYS.MANAGEMENT_ORDERS_MANAGE_KEY,
-        route: APP_ROUTES.ORDER_DRIVER,
-      },
+      // {
+      //   title: DASHBOARD_CONTENTS.MANAGEMENT_DRIVERS_ORDERS,
+      //   icon: "/images/Drivers.svg",
+      //   key: DASHBOARD_CONTENTS_KEYS.MANAGEMENT_ORDERS_MANAGE_KEY,
+      //   route: APP_ROUTES.ORDER_DRIVER,
+      // },
     ],
   },
  

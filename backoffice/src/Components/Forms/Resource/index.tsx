@@ -6,6 +6,8 @@ interface initialValues {
  name: string;
   overview: string;
   video: string;
+  sign: string;
+  Phrases: string;
 
 }
 interface FormProps {
@@ -127,6 +129,51 @@ function ResourceForm({
               ) : null}
             </div>
             </div>
+
+            <div className="form_row">
+            <div className="form_group">
+              <div className="form_lable_wrapper">
+                <div className="text_13 weight_500">Sign</div>
+              </div>
+              <div className="form_input-wrapper w-embed">
+                <input
+                  className="form_input"
+                  type="text"
+                  placeholder="Enter sign"
+                  id="sign"
+                  name="sign"
+                  data-name="sign"
+                  value={values.sign}
+                  onChange={handleChange}
+                />
+                {errors.sign && touched.sign ? (
+                  <div className="error_text">{errors.sign}</div>
+                ) : null}
+              </div>
+            </div>
+            <div className="form_group">
+              <div className="form_lable_wrapper">
+                <div className="text_13 weight_500">Phrases</div>
+              </div>
+              <div className="form_input-wrapper w-embed">
+                <input
+                  className="form_input"
+                  type="text"
+                  placeholder="Enter Phrases" 
+                  id="Phrases"
+                  name="Phrases"
+                  data-name="Phrases"
+                  value={values.Phrases}
+                  onChange={handleChange}
+                />
+                {errors.Phrases && touched.Phrases ? (
+                  <div className="error_text">{errors.Phrases}</div>
+                ) : null}
+              </div>
+              </div>
+
+            
+          </div>
         </div>
       </div>
     </div>

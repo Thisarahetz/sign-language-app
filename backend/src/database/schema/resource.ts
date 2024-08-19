@@ -9,7 +9,7 @@ import {
     boolean,
     jsonb,
   } from 'drizzle-orm/pg-core';
-  import { is, relations, sql } from 'drizzle-orm';
+  import { desc, is, relations, sql } from 'drizzle-orm';
   import module from './module';
 import { title } from 'process';
 
@@ -18,7 +18,8 @@ import { title } from 'process';
         id: serial('resource_id').primaryKey(),
         title: varchar('title'),
         name: varchar('name'),
-        overview: jsonb('overview'),
+        overview: varchar('overview'),
+        description: jsonb('description'),
         video: varchar('video'),
         review: varchar('review'),
         module_id: integer('module_id').references(()=>module.id),

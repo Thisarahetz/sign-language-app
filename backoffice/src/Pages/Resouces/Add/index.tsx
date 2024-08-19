@@ -39,6 +39,8 @@ export default function ResourceAddPage() {
     name: string;
     overview: string;
     video: string;
+    sign: string;
+    Phrases: string;
   };
 
   const initialValues: initialValues = {
@@ -46,6 +48,8 @@ export default function ResourceAddPage() {
     name: "",
     overview: "",
     video: "",
+    sign: "",
+    Phrases: "",
   };
 
   const onSubmit = (values: initialValues) => {
@@ -54,6 +58,10 @@ export default function ResourceAddPage() {
       name: values.name,
       overview: values.overview,
       video: values.video,
+      description: {
+        sign: values.sign,
+        Phrases: values.Phrases,
+      },
     };
     CreateResource.mutateAsync(value);
   };

@@ -1,8 +1,13 @@
-import { useUserStore } from "../../Store";
+import useUserStore from "../../Store";
+
 
 export default function Nav() {
-  const user =  useUserStore.getState().user;
+  const [
+    user
+  ] = useUserStore((state) => [state.user, state.setUser]);
+
   console.log(user);
+
   return (
     <div className="nav">
       <div
@@ -16,7 +21,7 @@ export default function Nav() {
       >
         <div className="page-padding">
           <div className="nav_container">
-            <a href="index.html" className="nav_logo-link w-nav-brand">
+            <a href="/" className="nav_logo-link w-nav-brand">
               <img
                 src="images/solidcore-logo-360x250-1.png"
                 loading="lazy"
@@ -29,10 +34,10 @@ export default function Nav() {
             <nav role="navigation" className="nav_menu w-nav-menu">
               <div className="nav_link-wrapper">
                 <div className="nav_link-list">
-                  <a href="learn" className="nav_link w-nav-link">
+                  <a href="/learn" className="nav_link w-nav-link">
                     Learn
                   </a>
-                  <a href="#" className="nav_link w-nav-link">
+                  <a href="/dashboard" className="nav_link w-nav-link">
                     Dashboard
                   </a>
                   <div

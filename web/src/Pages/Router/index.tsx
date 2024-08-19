@@ -7,6 +7,7 @@ import Home from "../Home";
 import Learn from "../Learn";
 import Practice from "../Practice";
 import Resource from "../Resource";
+import Overview from "../Overview";
 
 function Router() {
   return (
@@ -18,8 +19,9 @@ function Router() {
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/learn" element={<Learn/>} />
-        <Route path="learn/resource/practice" element={<Practice/>} />
+        <Route path="learn/resource/overview/practice" element={<Practice/>} />
         <Route path="/learn/resource" element={<Resource/>} />
+        <Route path="/learn/resource/overview" element={<Overview/>} />
          
       </Routes>
     </>

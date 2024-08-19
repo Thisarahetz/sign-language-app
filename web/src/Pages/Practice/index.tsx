@@ -6,6 +6,9 @@ import NormalButton from "../../Components/Icon/NormalButton";
 import { ReactMediaRecorder } from "react-media-recorder";
 import playCircle from "../../assets/icon/play-circle-svgrepo-com.svg";
 import stopVideoIcon from "../../assets/icon/stop-circle-svgrepo-com.svg";
+import { useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getResourceId } from "../../Api/Services/learn";
 
 const VideoPreview = (props: { stream: MediaStream }) => {
   const stream = props.stream;
@@ -81,6 +84,25 @@ function recordedVideo(mediaBlob: any, status: string) {
 
 function Practice() {
   let [audioOnOff, setAudio] = useState(true);
+
+  const location = useLocation();
+  const { state } = location;
+
+  const resourse_id = state?.module_id
+
+
+  const query = useQuery({
+    queryKey: ["resource", resourse_id],
+    queryFn: () => getResourceId(resourse_id),
+  });
+
+  useEffect(() => {
+    query.refetch();
+  }, []);
+
+  console.log(query?.data?.data);
+
+
 
   // Refs to store the start/stop recording functions
   const startRecordingRef = useRef(() => {});
@@ -277,11 +299,11 @@ function Practice() {
                   <div className="spacer-2"></div>
                   <h5 className="heading-style-h5">Lesson: 01</h5>
                   <h2 className="heading-style-h3">
-                    Review : Practice &quot;What&#x27;s your name?&quot;
+                    Review : Practice &quot;What&#x27;{query?.data?.data.name}`&quot;
                   </h2>
                   <div className="spacer-xsmall"></div>
                   <div className="text-size-regular">
-                    This is some text inside of a div block.
+                    {query?.data?.data.overview}
                   </div>
                   <div className="spacer-3"></div>
                   <div className="w-layout-grid grid-2-column is-practice">
@@ -292,11 +314,12 @@ function Practice() {
                       <div className="video-wrapper">
                         <video
                 
-                          width={520}
-                          height="auto"
+                          width="100%"
+                          height="100%"
                         
                           src={
-                            "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
+                            query?.data?.data.video
+                            
                           }
                           ref={videoRef}
                         ></video>

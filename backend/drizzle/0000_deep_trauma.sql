@@ -34,20 +34,20 @@ CREATE TABLE IF NOT EXISTS "module" (
 	"overview" text,
 	"icon" varchar,
 	"created_at" timestamp DEFAULT now() NOT NULL,
-	"updated_at" timestamp DEFAULT now() NOT NULL,
-	CONSTRAINT "module_title_unique" UNIQUE("title")
+	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "resources" (
 	"resource_id" serial PRIMARY KEY NOT NULL,
+	"title" varchar,
 	"name" varchar,
-	"overview" jsonb,
+	"overview" varchar,
+	"description" jsonb,
 	"video" varchar,
 	"review" varchar,
 	"module_id" integer,
 	"created_at" timestamp DEFAULT now() NOT NULL,
-	"updated_at" timestamp DEFAULT now() NOT NULL,
-	CONSTRAINT "resources_name_unique" UNIQUE("name")
+	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "scores" (

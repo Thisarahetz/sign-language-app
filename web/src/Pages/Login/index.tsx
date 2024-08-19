@@ -4,14 +4,53 @@ import {
   getFacebookLoginStatus,
   getFacebookProfile,
 } from "../../Utility/FacebookSDK";
-import { useUserStore } from "../../Store";
+
 import { useLocation, useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { SignInApiCall } from "../../Api/Services/Auth";
+import useUserStore from "../../Store";
+import { toast } from "sonner";
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
 export default function Login() {
-  
   const navigate = useNavigate();
+  const setUser = useUserStore((state) => state.setUser);
+
+
+  const loginGoogle = useGoogleLogin({
+    onSuccess: (codeResponse) => {
+      console.log("Login Success:", codeResponse);
+      // Send the code to your server to get the token
+      if (codeResponse.access_token) {
+        axios
+          .get(
+            `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`,
+            {
+              headers: {
+                Authorization: `Bearer ${codeResponse.access_token}`,
+                Accept: "application/json",
+              },
+            }
+          )
+          .then((res) => {
+            console.log(res.data);
+            setUser({
+              success: true,
+              data: {
+                id: res.data.id,
+                name: res.data.name
+              },
+            });
+  
+            navigate("/dashboard");
+          })
+          .catch((err) => console.log(err));
+      }
+    },
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
 
   const [state, setState] = useState({
     email: "",
@@ -26,13 +65,15 @@ export default function Login() {
         console.log(response);
       }
     });
+    googleLogout();
   }, []);
-  function login() {
+  function loginFacebook() {
     fbLogin().then((response) => {
       if (response.status === "connected") {
+        
         getFacebookProfile().then((profile) => {
           console.log(profile);
-          useUserStore.getState().setUser({
+          setUser({
             success: true,
             data: {
               id: profile.id,
@@ -57,31 +98,18 @@ export default function Login() {
         success: true,
         data: {
           id: data.id,
-          name: data.email
+          name: data.email,
         },
       });
       navigate("/dashboard");
     },
 
-    onError: (error) => {
-      console.log(error);
+    onError: (error: any) => {
+      // console.log(error?.response?.data?.message);
+      toast.error(error.response.data.message);
     },
   });
 
-
-
-
-  
-  
-
-
-
-
-
-  
-  
-
-  
   return (
     <div className="section is-height-100vh">
       <div className="padding-global">
@@ -115,7 +143,6 @@ export default function Login() {
                             onChange={(e) =>
                               setState({ ...state, email: e.target.value })
                             }
-                            
                           />
                         </div>
                         <div
@@ -158,8 +185,6 @@ export default function Login() {
                             onClick={(e) => {
                               e.preventDefault();
                               signIn.mutate(state);
-                              
-                             
                             }}
                           />
                         </div>
@@ -170,9 +195,11 @@ export default function Login() {
                     - Or -
                   </div>
                   <div className="buttons-wrapper">
-                    <a
+                    <button
                       data-w-id="42cf8c61-9fa4-4d60-6e00-090d8b3d5aaa"
-                      href="#"
+                      onClick={() => {
+                        loginGoogle();
+                      }}
                       className="link-block is-social w-inline-block"
                     >
                       <div className="social-icon-2 w-embed">
@@ -216,12 +243,11 @@ export default function Login() {
                       <div className="text-size-regular text-weight-medium">
                         Sign In with Gmail
                       </div>
-                    </a>
-                    <a
+                    </button>
+                    <button
                       data-w-id="42cf8c61-9fa4-4d60-6e00-090d8b3d5ab0"
-                      href="#"
                       className="link-block is-social w-inline-block"
-                      onClick={login}
+                      onClick={loginFacebook}
                     >
                       <div className="social-icon-2 w-embed">
                         <svg
@@ -240,7 +266,7 @@ export default function Login() {
                       <div className="text-size-regular text-weight-medium">
                         Facebook
                       </div>
-                    </a>
+                    </button>
                   </div>
                   <div
                     id="w-node-_42cf8c61-9fa4-4d60-6e00-090d8b3d5ab5-77be8be7"
@@ -248,7 +274,7 @@ export default function Login() {
                   >
                     <div>Don&#x27;t have an account?</div>
                     <a
-                      href="#"
+                      href="sign-up"
                       data-w-id="42cf8c61-9fa4-4d60-6e00-090d8b3d5ab8"
                       className="sign-up_button w-inline-block"
                     >

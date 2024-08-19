@@ -5,6 +5,7 @@ import {
   isEnum,
   IsEnum,
   IsOptional,
+  IsObject,
 } from 'class-validator';
 
 
@@ -25,4 +26,7 @@ export class CreateResourcesDto {
   @IsNotEmpty()
   video: string;
 
+  @IsObject()
+  @IsOptional()
+  description: any;
 }
