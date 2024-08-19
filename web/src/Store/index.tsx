@@ -1,8 +1,9 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface IUser {
   success: boolean;
-  data: any | null; // You can replace `any` with a more specific type if you know the structure of `data`.
+  data: any | null; 
 }
 
 export interface IState {
@@ -16,14 +17,15 @@ export const initialState: IState = {
   },
 };
 
-const userStore = (set:any, get:any) => ({
+const userStore = (set: any, get: any) => ({
   user: initialState.user,
   setUser: (user: IUser) => set({ user }),
-  resetUser: () => set({ user: initialState.user }),
+  logout: () => set({ user: initialState.user }),
+
 });
 
-
-const useUserStore = create(userStore);
+const useUserStore = create(persist(userStore,{
+  name: 'user-storage'
+}));
 
 export default useUserStore;
-

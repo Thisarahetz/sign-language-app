@@ -36,10 +36,12 @@ export default function Login() {
           .then((res) => {
             console.log(res.data);
             setUser({
-              success: true,
-              data: {
-                id: res.data.id,
-                name: res.data.name
+       
+                success: true,
+                data: {
+                  id: res.data.id,
+                  name: res.data.name,
+           
               },
             });
   
@@ -74,11 +76,13 @@ export default function Login() {
         getFacebookProfile().then((profile) => {
           console.log(profile);
           setUser({
-            success: true,
-            data: {
-              id: profile.id,
-              name: profile.name,
-            },
+     
+              success: true,
+              data: {
+                id: profile.id,
+                name: profile.name,
+              },
+            
           });
 
           navigate("/dashboard");
@@ -94,12 +98,14 @@ export default function Login() {
     mutationFn: (data: any) => SignInApiCall(data.email, data.password),
     onSuccess: (data) => {
       console.log(data);
-      useUserStore.getState().setUser({
-        success: true,
-        data: {
-          id: data.id,
-          name: data.email,
-        },
+      setUser({
+       
+          success: true,
+          data: {
+            id: data.id,
+            name: data.email
+          },
+        
       });
       navigate("/dashboard");
     },
@@ -210,7 +216,7 @@ export default function Login() {
                           fill="none"
                           xmlns="http://www.w3.org/2000/svg"
                         >
-                          <g clip-path="url(#clip0_301_8205)">
+                          <g clipPath="url(#clip0_301_8205)">
                             <path
                               d="M20.305 10.2302C20.305 9.55044 20.2499 8.86699 20.1323 8.19824H10.7V12.0491H16.1014C15.8773 13.291 15.1571 14.3897 14.1025 15.0878V17.5864H17.325C19.2173 15.8448 20.305 13.2726 20.305 10.2302Z"
                               fill="#4285F4"

@@ -1,6 +1,6 @@
 <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
 <circle cx="31.875" cy="31.875" r="30.875" transform="matrix(-1 0 0 1 63.75 0)" fill="#EEAF30" stroke="white" stroke-width="2"/>
-<g clip-path="url(#clip0_1661_11427)">
+<g clipPath="url(#clip0_1661_11427)">
 <path d="M35.922 30.9999H23.75V32.9999H35.922L30.558 38.3639L31.972 39.7779L39.75 31.9999L31.972 24.2219L30.558 25.6359L35.922 30.9999Z" fill="black"/>
 </g>
 <defs>

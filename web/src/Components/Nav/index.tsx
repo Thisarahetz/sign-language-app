@@ -1,12 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import useUserStore from "../../Store";
 
-
 export default function Nav() {
-  const [
-    user
-  ] = useUserStore((state) => [state.user, state.setUser]);
+  const user = useUserStore((state) => state.user);
+  const logoutUser = useUserStore((state) => state.logout);
+  const navigate = useNavigate();
 
-  console.log(user);
+  //logout
+  const logout = () => {
+    logoutUser();
+  };
 
   return (
     <div className="nav">
@@ -47,9 +50,7 @@ export default function Nav() {
                   >
                     <div className="nav_dropdown-toggle w-dropdown-toggle">
                       <div className="icon w-icon-dropdown-toggle"></div>
-                      <div>{
-                        user.success ? user.data.name : 'My Account'
-                        }</div>
+                      <div>{user.success ? user.data.name : "My Account"}</div>
                     </div>
                     <nav className="nav_drop-list w-dropdown-list">
                       <div className="deopdown-list-wrapper">
@@ -65,14 +66,21 @@ export default function Nav() {
                         >
                           <h6 className="heading-style-h6">Support</h6>
                         </a>
-                        <a
-                          href={user.success ? '/logout' : '/login'}
+                        <button
+                          onClick={() => {
+                            if (user.success) {
+                              logout();
+                              navigate("/");
+                            } else {
+                              navigate("/login");
+                            }
+                          }}
                           className="dropdown-content-wrapper w-inline-block"
                         >
-                          <h6 className="heading-style-h6">{
-                            user.success ? 'Logout' : 'Login'
-                            }</h6>
-                        </a>
+                          <h6 className="heading-style-h6">
+                            {user.success ? "Logout" : "Login"}
+                          </h6>
+                        </button>
                       </div>
                     </nav>
                   </div>
