@@ -275,8 +275,8 @@ function Practice() {
                       </div>
                       <div>Back</div>
                     </a>
-                    <a href="#" className="back-button-wrapper w-inline-block">
-                      <div>Next</div>
+                    <a href="/dashboard" className="back-button-wrapper w-inline-block">
+                      <div>Finish Lesson</div>
                       <div className="icon-1x1-small w-embed">
                         <svg
                           width="24"

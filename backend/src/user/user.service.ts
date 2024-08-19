@@ -97,8 +97,23 @@ export class UserService {
     }
   }
 
-  findAll() {
-    return `This action returns all user`;
+  async findAll() {
+    try {
+      const users =await this.conn
+        .select()
+        .from(schema.user)
+        .execute();
+
+      return {
+        status: 200,
+        message: 'Users fetched successfully',
+        data: users,
+      }
+      
+    } catch (error) {
+      throw error;
+      
+    }
   }
 
   findOne(id: number) {

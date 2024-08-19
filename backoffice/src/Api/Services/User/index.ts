@@ -41,3 +41,13 @@ export const PatchEnableDisableUser = async (userId: number) => {
   const response = await APICLIENT.patch(`/user/admin/disable/${userId}`);
   return response.data;
 };
+
+export const GetAllUsers = async () => {
+  try {
+    const response = await APICLIENT.get("/user");
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
+

@@ -115,8 +115,8 @@ export default function Home() {
                   <div id="w-node-c39717d4-a606-39da-39df-1fd2af3f95da-51c2df9a" className="grid-content-features">
                     <div className="feature-icon-wrapper">
                       <div className="icon-1x1-medium w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#2f80ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                          <path d="M10 8L16 12L10 16V8Z" stroke="#2f80ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#2f80ff" stroke-width="2" stroke-linecap="round" strokeLinejoin="round"></path>
+                          <path d="M10 8L16 12L10 16V8Z" stroke="#2f80ff" stroke-width="2" stroke-linecap="round" strokeLinejoin="round"></path>
                         </svg></div>
                     </div>
                     <div className="spacer-custom1"></div>
@@ -127,7 +127,7 @@ export default function Home() {
                   <div id="w-node-_46cffa8b-4bab-6d9f-3687-c59e0da5c6f0-51c2df9a" className="grid-content-features">
                     <div className="feature-icon-wrapper">
                       <div className="icon-1x1-medium w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M5 17H4C3.46957 17 2.96086 16.7893 2.58579 16.4142C2.21071 16.0391 2 15.5304 2 15V5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H20C20.5304 3 21.0391 3.21071 21.4142 3.58579C21.7893 3.96086 22 4.46957 22 5V15C22 15.5304 21.7893 16.0391 21.4142 16.4142C21.0391 16.7893 20.5304 17 20 17H19M12 15L17 21H7L12 15Z" stroke="#2f80ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M5 17H4C3.46957 17 2.96086 16.7893 2.58579 16.4142C2.21071 16.0391 2 15.5304 2 15V5C2 4.46957 2.21071 3.96086 2.58579 3.58579C2.96086 3.21071 3.46957 3 4 3H20C20.5304 3 21.0391 3.21071 21.4142 3.58579C21.7893 3.96086 22 4.46957 22 5V15C22 15.5304 21.7893 16.0391 21.4142 16.4142C21.0391 16.7893 20.5304 17 20 17H19M12 15L17 21H7L12 15Z" stroke="#2f80ff" stroke-width="2" stroke-linecap="round" strokeLinejoin="round"></path>
                         </svg></div>
                     </div>
                     <div className="spacer-custom1"></div>
@@ -138,7 +138,7 @@ export default function Home() {
                   <div id="w-node-_5e36dbe5-88de-8c43-efe1-d86c16f15534-51c2df9a" className="grid-content-features">
                     <div className="feature-icon-wrapper">
                       <div className="icon-1x1-medium w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M12 6V12L16 14M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#2f80ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M12 6V12L16 14M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="#2f80ff" stroke-width="2" stroke-linecap="round" strokeLinejoin="round"></path>
                         </svg></div>
                     </div>
                     <div className="spacer-custom1"></div>

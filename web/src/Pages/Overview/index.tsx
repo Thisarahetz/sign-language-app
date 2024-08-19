@@ -48,7 +48,7 @@ function Overview() {
                             stroke="currentColor"
                             stroke-width="2"
                             stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinejoin="round"
                           ></path>
                         </svg>
                       </div>
@@ -73,7 +73,7 @@ function Overview() {
                             stroke="currentColor"
                             stroke-width="2"
                             stroke-linecap="round"
-                            stroke-linejoin="round"
+                            strokeLinejoin="round"
                           ></path>
                         </svg>
                       </div>
