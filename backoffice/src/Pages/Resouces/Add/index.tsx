@@ -4,7 +4,7 @@ import { CreateNewAdminUser } from "@src/Api/Services/User";
 import { useFormik } from "formik";
 import { useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import APP_ROUTES from "@src/Constants/route";
 import DefaultButton from "@components/Button/Default";
@@ -14,52 +14,63 @@ import UserForm from "@components/Forms/User";
 import { DASHBOARD_CONTENTS } from "@constants/dashboard";
 import Icon from "@assets/doc.svg";
 import { useMutation } from "@tanstack/react-query";
-import { CreateNewModule } from "@src/Api/Services/Module";
+import { CreateNewModule, CreateNewResource } from "@src/Api/Services/Module";
 import ModuleForm from "@components/Forms/Module";
+import ResourceForm from "@components/Forms/Resource";
 
-interface initialValues {
-  title: string;
-  overview: string;
-  category: "topic" | "grammar" | "game";
-}
-
-export default function ModuleAddPage() {
+export default function ResourceAddPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const moduleId = location.state;
 
-  const createModule = useMutation({
-    mutationFn: (values: any) => CreateNewModule(values),
+  const CreateResource = useMutation({
+    mutationFn: (values: any) => CreateNewResource(moduleId, values),
     onSuccess: (data: any) => {
       toast.success(data.message);
-      navigate(APP_ROUTES.MODULE);
+      navigate(APP_ROUTES.RESOURCE, { state: moduleId });
     },
     onError: (error: any) => {
       toast.error(error.response.data.message);
     },
   });
 
-  const initialValues: initialValues = {
-    title: "",
-    overview: "",
-    category: "topic",
+  type initialValues = {
+    title: string;
+    name: string;
+    overview: string;
+    video: string;
   };
 
-
+  const initialValues: initialValues = {
+    title: "",
+    name: "",
+    overview: "",
+    video: "",
+  };
 
   const onSubmit = (values: initialValues) => {
     const value = {
       title: values.title,
+      name: values.name,
       overview: values.overview,
-      category: values.category,
+      video: values.video,
     };
-    createModule.mutateAsync(value);
+    CreateResource.mutateAsync(value);
   };
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit,setFieldValue } =
-    useFormik({
-      initialValues,
-      // validationSchema: AddUserSchema,
-      onSubmit,
-    });
+  const {
+    values,
+    errors,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues,
+    // validationSchema: AddUserSchema,
+    onSubmit,
+  });
 
   return (
     <>
@@ -86,7 +97,7 @@ export default function ModuleAddPage() {
         }
       />
       <div className="full_grid_wrapper">
-        <ModuleForm
+        <ResourceForm
           values={values}
           errors={errors}
           touched={touched}

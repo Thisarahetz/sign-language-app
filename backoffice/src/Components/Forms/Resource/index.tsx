@@ -3,10 +3,12 @@ import React from "react";
 
 interface initialValues {
   title: string;
+ name: string;
   overview: string;
-  category: "topic" | "grammar" | "game";
+  video: string;
+
 }
-interface UserFormProps {
+interface FormProps {
   values: initialValues;
   errors: any;
   touched: any;
@@ -17,7 +19,7 @@ interface UserFormProps {
   isEdit: boolean;
 }
 
-function ModuleForm({
+function ResourceForm({
   values,
   errors,
   touched,
@@ -26,7 +28,7 @@ function ModuleForm({
   Children,
   setFieldValue,
   isEdit,
-}: UserFormProps) {
+}: FormProps) {
   return (
     <div className="form_container">
       <div className="form">
@@ -61,13 +63,34 @@ function ModuleForm({
           <div className="form_row">
             <div className="form_group">
               <div className="form_lable_wrapper">
+                <div className="text_13 weight_500">Name</div>
+              </div>
+              <div className="form_input-wrapper w-embed">
+                <input
+                  className="form_input"
+                  type="text"
+                  placeholder="Enter name"
+                  id="name"
+                  name="name"
+                  data-name="name"
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {errors.name && touched.name ? (
+                  <div className="error_text">{errors.name}</div>
+                ) : null}
+              </div>
+            </div>
+            <div className="form_group">
+              <div className="form_lable_wrapper">
                 <div className="text_13 weight_500">Overview</div>
               </div>
               <div className="form_input-wrapper w-embed">
                 <input
                   className="form_input"
                   type="text"
-                  placeholder="Enter Overview"
+                  placeholder="Enter overview"
                   id="overview"
                   name="overview"
                   data-name="overview"
@@ -79,37 +102,35 @@ function ModuleForm({
                   <div className="error_text">{errors.overview}</div>
                 ) : null}
               </div>
-            </div>
-            <div className="form_group">
-              <div className="form_lable_wrapper">
-                <div className="text_13 weight_500">Category</div>
               </div>
-              <div className="form_input-wrapper w-embed">
-                <select
-                  className="form_input"
-                  id="category"
-                  name="category"
-                  data-name="category"
-                  value={values.category}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
 
-                >
-                  <option value="">Select</option>
-                  <option value="topic">Topic</option>
-                  <option value="grammar">Grammar</option>
-                  <option value="game">Game</option>
-                </select>
-              </div>
-              {errors.category && touched.category ? (
-                <div className="error_text">{errors.category}</div>
+            
+          </div>
+          <div className="form_group">
+            <div className="form_lable_wrapper">
+              <div className="text_13 weight_500">Video</div>
+            </div>
+            <div className="form_input-wrapper w-embed">
+              <input
+                className="form_input"
+                type="text"
+                placeholder="Enter video"
+                id="video"
+                name="video"
+                data-name="video"
+                value={values.video}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.video && touched.video ? (
+                <div className="error_text">{errors.video}</div>
               ) : null}
             </div>
-          </div>
+            </div>
         </div>
       </div>
     </div>
   );
 }
 
-export default ModuleForm;
+export default ResourceForm;

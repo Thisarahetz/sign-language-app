@@ -17,6 +17,14 @@ export class LearnController {
   findAll() {
     return this.learnService.findAll();
   }
+  @Get('module/resource')
+  findAllResources(
+    @Query ('id') id: string
+  ) {
+    return this.learnService.findAllResourcesByModuleId(
+      +id
+    );
+  }
 
   @Post('module/resource')
   createResources(@Body() createLearnDto: CreateResourcesDto, @Query('id') id: string) {

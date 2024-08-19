@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 interface IUser {
-  success: any;
-  data: any;
+  success: boolean;
+  data: any | null; // You can replace `any` with a more specific type if you know the structure of `data`.
 }
 
 export interface IState {
@@ -16,8 +16,12 @@ export const initialState: IState = {
   },
 };
 
-export const userStore = create<IState>()((set) => ({
+export const useUserStore = create<IState & {
+  setUser: (user: IUser) => void;
+  resetUser: () => void;
+}>((set) => ({
   user: initialState.user,
-  setUser: (user: IUser) => set({ user }),
+  setUser: (user) => set({ user }),
   resetUser: () => set({ user: initialState.user }),
 }));
+

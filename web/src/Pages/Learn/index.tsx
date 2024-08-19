@@ -41,6 +41,7 @@ function Learn() {
                               title={item?.title}
                               description={item?.overview}
                               isTopic
+                              module_id={item?.id}
                             />
                           ))
                         )}
@@ -61,6 +62,7 @@ function Learn() {
                               title={item?.title}
                               description={item?.overview}
                               isGrammar
+                              module_id={item?.id}
                             />
                           ))
                         )}
@@ -81,6 +83,7 @@ function Learn() {
                               title={item?.title}
                               description={item?.overview}
                               isTools
+                              module_id={item?.id}
                             />
                           ))
                         )}

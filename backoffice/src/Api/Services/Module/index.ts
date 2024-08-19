@@ -17,3 +17,28 @@ export const getAllModule = async () => {
   return response.data;
 };
 
+
+//get all resources by module id
+export const getAllResourcesByModuleId = async (id: string) => {
+  const response = await APICLIENT.get(`/learn/module/resource?id=${id}`);
+  return response.data;
+};
+
+
+//create new module
+export const CreateNewModule = async (data: any) => {
+  const response = await APICLIENT.post(`/learn/module`, data);
+  return response.data;
+};
+
+
+
+
+//add new resource
+export const CreateNewResource = async (id:string ,data: any) => {
+  const response = await APICLIENT.post(`/learn/module/resource?id=${id}`, data);
+  return response.data;
+};
+
+
+

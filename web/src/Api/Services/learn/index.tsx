@@ -5,3 +5,9 @@ export const GetAllLearn = async () => {
   );
   return response.data;
 };  
+
+
+export const getResourceByModuleId = async (id: number) => {
+  const response = await APICLIENT.get(`/learn/module/resource?id=${id}`);
+  return response.data;
+};

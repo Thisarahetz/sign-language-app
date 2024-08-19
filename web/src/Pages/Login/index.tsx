@@ -1,27 +1,46 @@
-import { useEffect } from "react";
-import { fbLogin, getFacebookLoginStatus, getFacebookProfile } from "../../Utility/FacebookSDK";
-
+import { useEffect, useState } from "react";
+import {
+  fbLogin,
+  getFacebookLoginStatus,
+  getFacebookProfile,
+} from "../../Utility/FacebookSDK";
+import { useUserStore } from "../../Store";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { SignInApiCall } from "../../Api/Services/Auth";
 
 export default function Login() {
-  useEffect(() => {
-    console.log("Started use effect");
   
-      getFacebookLoginStatus().then((response) => {
-        if (response == null) {
-          console.log("No login status for the person");
-        } else {
-          console.log(response);
-        }
-      });
-   
+  const navigate = useNavigate();
+
+  const [state, setState] = useState({
+    email: "",
+    password: "",
+  });
+
+  useEffect(() => {
+    getFacebookLoginStatus().then((response) => {
+      if (response == null) {
+        console.log("No login status for the person");
+      } else {
+        console.log(response);
+      }
+    });
   }, []);
   function login() {
-    console.log("reached log in button");
     fbLogin().then((response) => {
-      console.log(response);
       if (response.status === "connected") {
         getFacebookProfile().then((profile) => {
           console.log(profile);
+          useUserStore.getState().setUser({
+            success: true,
+            data: {
+              id: profile.id,
+              name: profile.name,
+            },
+          });
+
+          navigate("/dashboard");
         });
         console.log("Person is connected");
       } else {
@@ -29,6 +48,40 @@ export default function Login() {
       }
     });
   }
+
+  const signIn = useMutation({
+    mutationFn: (data: any) => SignInApiCall(data.email, data.password),
+    onSuccess: (data) => {
+      console.log(data);
+      useUserStore.getState().setUser({
+        success: true,
+        data: {
+          id: data.id,
+          name: data.email
+        },
+      });
+      navigate("/dashboard");
+    },
+
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+
+  
   return (
     <div className="section is-height-100vh">
       <div className="padding-global">
@@ -58,6 +111,11 @@ export default function Login() {
                             name="email"
                             placeholder="Email"
                             className="form_input"
+                            value={state.email}
+                            onChange={(e) =>
+                              setState({ ...state, email: e.target.value })
+                            }
+                            
                           />
                         </div>
                         <div
@@ -73,6 +131,10 @@ export default function Login() {
                             name="password"
                             placeholder="Password"
                             className="form_input"
+                            value={state.password}
+                            onChange={(e) =>
+                              setState({ ...state, password: e.target.value })
+                            }
                           />
                         </div>
                         <div className="form_field-wrapper is-right">
@@ -93,6 +155,12 @@ export default function Login() {
                             type="submit"
                             className="button is-form"
                             value="Sign In"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              signIn.mutate(state);
+                              
+                             
+                            }}
                           />
                         </div>
                       </form>
@@ -107,8 +175,6 @@ export default function Login() {
                       href="#"
                       className="link-block is-social w-inline-block"
                     >
-                     
-
                       <div className="social-icon-2 w-embed">
                         <svg
                           width="21"

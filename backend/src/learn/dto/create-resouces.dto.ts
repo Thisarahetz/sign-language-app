@@ -11,6 +11,10 @@ import {
 export class CreateResourcesDto {
   @IsString()
   @IsNotEmpty()
+  title: string;
+
+  @IsString()
+  @IsNotEmpty()
   name: string;
 
   @IsString()
@@ -21,5 +25,4 @@ export class CreateResourcesDto {
   @IsNotEmpty()
   video: string;
 
-  
 }

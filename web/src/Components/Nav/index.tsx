@@ -1,4 +1,8 @@
+import { useUserStore } from "../../Store";
+
 export default function Nav() {
+  const user =  useUserStore.getState().user;
+  console.log(user);
   return (
     <div className="nav">
       <div
@@ -25,7 +29,7 @@ export default function Nav() {
             <nav role="navigation" className="nav_menu w-nav-menu">
               <div className="nav_link-wrapper">
                 <div className="nav_link-list">
-                  <a href="#" className="nav_link w-nav-link">
+                  <a href="learn" className="nav_link w-nav-link">
                     Learn
                   </a>
                   <a href="#" className="nav_link w-nav-link">
@@ -38,7 +42,9 @@ export default function Nav() {
                   >
                     <div className="nav_dropdown-toggle w-dropdown-toggle">
                       <div className="icon w-icon-dropdown-toggle"></div>
-                      <div>Thisara</div>
+                      <div>{
+                        user.success ? user.data.name : 'My Account'
+                        }</div>
                     </div>
                     <nav className="nav_drop-list w-dropdown-list">
                       <div className="deopdown-list-wrapper">
@@ -55,10 +61,12 @@ export default function Nav() {
                           <h6 className="heading-style-h6">Support</h6>
                         </a>
                         <a
-                          href="#"
+                          href={user.success ? '/logout' : '/login'}
                           className="dropdown-content-wrapper w-inline-block"
                         >
-                          <h6 className="heading-style-h6">Signout</h6>
+                          <h6 className="heading-style-h6">{
+                            user.success ? 'Logout' : 'Login'
+                            }</h6>
                         </a>
                       </div>
                     </nav>

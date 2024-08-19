@@ -62,8 +62,8 @@ export class AuthService {
       refresh_token: rt,
     };
   }
-  create(createAuthDto: CreateUserDto) {
-    return this.userService.create(createAuthDto);
+  async create(createAuthDto: CreateUserDto) {
+    return await this.userService.create(createAuthDto);
   }
 
   validateUser(arg0: {

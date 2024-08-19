@@ -11,11 +11,13 @@ import {
   } from 'drizzle-orm/pg-core';
   import { is, relations, sql } from 'drizzle-orm';
   import module from './module';
+import { title } from 'process';
 
   
     export const resource = pgTable('resources', {
         id: serial('resource_id').primaryKey(),
-        name: varchar('name').unique(),
+        title: varchar('title'),
+        name: varchar('name'),
         overview: jsonb('overview'),
         video: varchar('video'),
         review: varchar('review'),

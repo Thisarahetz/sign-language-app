@@ -291,8 +291,10 @@ function Practice() {
                     >
                       <div className="video-wrapper">
                         <video
-                          width="100%"
+                
+                          width={520}
                           height="auto"
+                        
                           src={
                             "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
                           }

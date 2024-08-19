@@ -19,7 +19,7 @@ export default function ModuleManagePage() {
         ButtonWrapper={
           <DefaultButton
             onClick={() => {
-              navigate(APP_ROUTES.ADD_USER);
+              navigate(APP_ROUTES.ADD_MODULE);
               dispatch(setFormStatus("create"));
             }}
             buttonText={"Add Module"}

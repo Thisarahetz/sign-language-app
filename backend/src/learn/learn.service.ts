@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { CreateLearnDto } from './dto/create-learn.dto';
 import { UpdateLearnDto } from './dto/update-learn.dto';
 import { PG_CONNECTION } from '@/constants';
@@ -6,9 +6,11 @@ import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import * as schema from '@/database/schema';
 import { CreateResourcesDto } from './dto/create-resouces.dto';
 import { eq } from 'drizzle-orm';
+import { title } from 'process';
 
 @Injectable()
 export class LearnService {
+  
   constructor(
     @Inject(PG_CONNECTION) private conn: NodePgDatabase<typeof schema>,
   ) {}
@@ -58,6 +60,7 @@ export class LearnService {
           updatedAt: schema.module.updatedAt,
           resource:{
             id: schema.resource.id,
+            title: schema.resource.title,
             name: schema.resource.name,
             overview: schema.resource.overview,
             video: schema.resource.video,
@@ -124,11 +127,12 @@ export class LearnService {
 
   async createResources(createLearnDto: CreateResourcesDto, id: number) {
     try {
-      const { name, overview, video } = createLearnDto;
+      const { name, overview, video , title } = createLearnDto;
 
       const result = await this.conn
         .insert(schema.resource)
         .values({
+          title,
           name,
           overview,
           video,
@@ -136,6 +140,7 @@ export class LearnService {
         })
         .returning({
           insertedId: schema.resource.id,
+          title: schema.resource.title,
           name: schema.resource.name,
           overview: schema.resource.overview,
           video: schema.resource.video,
@@ -155,6 +160,39 @@ export class LearnService {
       };
     } catch (error) {
       return error;
+    }
+  }
+
+  async findAllResourcesByModuleId(id: number) {
+    try {
+      if (!id) {
+        throw new BadRequestException('Module id is required');
+      }
+      let result = await this.conn
+        .select({
+          id: schema.resource.id,
+          title: schema.resource.title,
+          name: schema.resource.name,
+          overview: schema.resource.overview,
+          video: schema.resource.video,
+          review: schema.resource.review,
+          module_id: schema.resource.module_id,
+          createdAt: schema.resource.createdAt,
+          updatedAt: schema.resource.updatedAt,
+        })
+        .from(schema.resource)
+        .where(eq(schema.resource.module_id, id))
+        .execute();
+
+      return {
+        status: true,
+        message: 'Resource fetched successfully',
+        data: result,
+      };
+      
+    } catch (error) {
+      throw error;
+      
     }
   }
 

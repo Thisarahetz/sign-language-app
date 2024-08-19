@@ -1,23 +1,20 @@
 import TableNoData from "@components/Common/NoData/TableNoData";
 import TableLoader from "@components/Loaders/Table";
-import { getAllModule } from "@src/Api/Services/Module";
+import { getAllModule, getAllResourcesByModuleId } from "@src/Api/Services/Module";
 import APP_ROUTES from "@src/Constants/route";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export type ModuleType = {
-  title: string;
-  overview: string;
-  category: "topic" | "grammar" | "game";
-};
 
-function ModuleTable() {
+function ResourceTable(
+  moduleId: any
+) {
   const navigate = useNavigate();
 
   const { data, isLoading, isError, isSuccess, refetch } = useQuery({
     queryKey: ["getAllModule"],
-    queryFn: getAllModule,
+    queryFn: () => getAllResourcesByModuleId(moduleId.moduleId),
   });
 
   useEffect(() => {
@@ -74,10 +71,10 @@ function ModuleTable() {
               <div className="th_value">Title</div>
             </th>
             <th className="table_header">
-              <div className="th_value">Overview</div>
+              <div className="th_value">Name</div>
             </th>
             <th className="table_header">
-              <div className="th_value">Category</div>
+              <div className="th_value">Overview</div>
             </th>
             <th className="table_header">
               <div className="th_value">Created At</div>
@@ -99,17 +96,18 @@ function ModuleTable() {
             <tbody className="table_body" key={item.id}>
               <tr className="table_row">
                 <td className="table_cell">
-                  <div className="td_value">{item?.module[0]?.title}</div>
+                  <div className="td_value">{item?.title}</div>
                 </td>
                 <td className="table_cell">
-                  <div className="td_value">{item?.module[0].overview}</div>
+                  <div className="td_value">{item?.name}</div>
                 </td>
                 <td className="table_cell">
-                  <div className="td_value">{item?.category}</div>
+                  <div className="td_value">{item?.overview}</div>
                 </td>
                 <td className="table_cell">
-                  <div className="td_value">{item?.module[0].createdAt}</div>
+                  <div className="td_value">{item?.createdAt}</div>
                 </td>
+                    
 
                 <td>
                   <div className="table_td is_last">
@@ -118,8 +116,8 @@ function ModuleTable() {
                       href="#"
                       className="view_link w-inline-block"
                       onClick={() => {
-                        navigate(APP_ROUTES.RESOURCE, {
-                          state: item?.module[0].id,
+                        navigate(APP_ROUTES.EDIT_USER, {
+                          state: item?.user_id,
                         });
                       }}
                     >
@@ -173,4 +171,4 @@ function ModuleTable() {
   );
 }
 
-export default ModuleTable;
+export default ResourceTable;

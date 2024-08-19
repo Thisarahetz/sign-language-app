@@ -2,7 +2,7 @@ import APICLIENT from "../../Axios";
 
 
 export const SignInApiCall = async (email: string, password: string) => {
-  const response = await APICLIENT.post("auth/admin/login", {
+  const response = await APICLIENT.post("auth/login", {
     email,
     password,
   });
@@ -32,3 +32,9 @@ export const ChnagePasswordApiCall = async (data: any) => {
   const response = await APICLIENT.put(`/auth/change-password`, data);
   return response.data;
 };
+
+export const SignUpApiCall = async (data: any) => {
+  const response = await APICLIENT.post(`/auth/register`, data);
+  return response.data;
+};
+
