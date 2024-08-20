@@ -24,6 +24,7 @@ function ModuleTable() {
     refetch();
   }, []);
 
+  console.log(data.data);
 
   return (
     <div
@@ -95,20 +96,20 @@ function ModuleTable() {
           </tr>
         </thead>
         {data &&
-          data.data.map((item: any, index: number) => (
+          data?.data?.flatMap((category:any) => category.module).map((item: any, index: number) => (
             <tbody className="table_body" key={item.id}>
               <tr className="table_row">
                 <td className="table_cell">
-                  <div className="td_value">{item?.module[0]?.title}</div>
+                  <div className="td_value">{item?.title}</div>
                 </td>
                 <td className="table_cell">
-                  <div className="td_value">{item?.module[0].overview}</div>
+                  <div className="td_value">{item?.overview}</div>
                 </td>
                 <td className="table_cell">
                   <div className="td_value">{item?.category}</div>
                 </td>
                 <td className="table_cell">
-                  <div className="td_value">{item?.module[0].createdAt}</div>
+                  <div className="td_value">{item?.createdAt}</div>
                 </td>
 
                 <td>
@@ -119,7 +120,7 @@ function ModuleTable() {
                       className="view_link w-inline-block"
                       onClick={() => {
                         navigate(APP_ROUTES.RESOURCE, {
-                          state: item?.module[0].id,
+                          state: item?.id,
                         });
                       }}
                     >
