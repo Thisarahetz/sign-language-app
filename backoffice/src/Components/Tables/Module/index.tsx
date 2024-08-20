@@ -24,7 +24,6 @@ function ModuleTable() {
     refetch();
   }, []);
 
-  console.log(data.data);
 
   return (
     <div
@@ -97,7 +96,7 @@ function ModuleTable() {
         </thead>
         {data &&
           data?.data?.flatMap((category:any) => category.module).map((item: any, index: number) => (
-            <tbody className="table_body" key={item.id}>
+            <tbody className="table_body" key={item?.id}>
               <tr className="table_row">
                 <td className="table_cell">
                   <div className="td_value">{item?.title}</div>
