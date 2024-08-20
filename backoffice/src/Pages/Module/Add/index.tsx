@@ -70,7 +70,7 @@ export default function ModuleAddPage() {
           <>
             <DefaultButton
               onClick={() => {
-                navigate(APP_ROUTES.USERS);
+                navigate(-1);
               }}
               buttonText={"Cancel"}
               buttonColor={"gray"}

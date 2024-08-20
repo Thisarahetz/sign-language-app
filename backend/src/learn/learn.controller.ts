@@ -55,8 +55,15 @@ export class LearnController {
     return this.learnService.update(+id, updateLearnDto);
   }
 
-  @Delete(':id')
+  //delete module
+  @Delete('module/:id')
   remove(@Param('id') id: string) {
-    return this.learnService.remove(+id);
+    return this.learnService.removeModule(+id);
+  }
+
+  //delete resource
+  @Delete('resource/:id')
+  removeResource(@Param('id') id: string) {
+    return this.learnService.removeResource(+id);
   }
 }

@@ -10,6 +10,7 @@ import { title } from 'process';
 
 @Injectable()
 export class LearnService {
+  
   constructor(
     @Inject(PG_CONNECTION) private conn: NodePgDatabase<typeof schema>,
   ) {}
@@ -216,6 +217,58 @@ export class LearnService {
     } catch (error) {
       return error;
     }
+  }
+
+  async removeResource(id: number) {
+    try {
+      const result = await this.conn
+        .delete(schema.resource)
+        .where(eq(schema.resource.id, id))
+        .execute();
+
+      return {
+        status: true,
+        message: 'Resource deleted successfully',
+        data: result,
+      };
+      
+    } catch (error) {
+      return error;
+      
+    }
+  }
+  async removeModule(id: number) {
+    try {
+      //check if module has resources
+      const resources = await this.conn
+        .select({
+          id: schema.resource.id,
+        })
+        .from(schema.resource)
+        .where(eq(schema.resource.module_id, id))
+        .execute();
+
+      if (resources.length > 0) {
+        throw new BadRequestException('Module has resources');
+      }
+
+
+      const result = await this.conn
+        .delete(schema.module)
+        .where(eq(schema.module.id, id))
+        .execute();
+
+      return {
+        status: true,
+        message: 'Module deleted successfully',
+        data: result,
+      };
+      
+    } catch (error) {
+      return error;
+      
+    }
+    
   }
 
   findOne(id: number) {

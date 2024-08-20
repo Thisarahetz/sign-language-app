@@ -41,4 +41,17 @@ export const CreateNewResource = async (id:string ,data: any) => {
 };
 
 
+//delete module
+export const DeleteModule = async (id: string) => {
+  const response = await APICLIENT.delete(`/learn/module/${id}`);
+  return response.data;
+};
+
+//delete resource
+export const DeleteResource = async (id: string) => {
+  const response = await APICLIENT.delete(`/learn/resource/${id}`);
+  return response.data;
+};
+
+
 

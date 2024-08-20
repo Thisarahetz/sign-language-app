@@ -83,13 +83,13 @@ export default function ResourceAddPage() {
   return (
     <>
       <Topbar
-        title={DASHBOARD_CONTENTS.CONFIGURATIONS_USER_ADD}
+        title={'Add Resource'}
         icon={Icon}
         ButtonWrapper={
           <>
             <DefaultButton
               onClick={() => {
-                navigate(APP_ROUTES.USERS);
+                navigate(-1);
               }}
               buttonText={"Cancel"}
               buttonColor={"gray"}

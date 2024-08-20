@@ -37,7 +37,7 @@ function ResourceForm({
         <div className="form_section is_last">
           <div className="form_title_wrapper">
             <h5 className="text_24 weight_500">
-              {isEdit ? "Edit Module" : "Add Module"}
+              {isEdit ? "Edit Resource" : "Add Resource"}
             </h5>
           </div>
 

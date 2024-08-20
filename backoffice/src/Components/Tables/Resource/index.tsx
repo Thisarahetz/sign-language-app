@@ -1,10 +1,11 @@
 import TableNoData from "@components/Common/NoData/TableNoData";
 import TableLoader from "@components/Loaders/Table";
-import { getAllModule, getAllResourcesByModuleId } from "@src/Api/Services/Module";
+import { CreateNewResource, DeleteResource, getAllModule, getAllResourcesByModuleId } from "@src/Api/Services/Module";
 import APP_ROUTES from "@src/Constants/route";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 
 function ResourceTable(
@@ -17,9 +18,36 @@ function ResourceTable(
     queryFn: () => getAllResourcesByModuleId(moduleId.moduleId),
   });
 
+  //mutation to delete resource
+  const _DeleteResource = useMutation({
+    mutationFn: (id: string) => DeleteResource(id),
+    onSuccess: (
+      data
+    ) => {
+      if(data.status_code === 200){
+        toast.success("Resource deleted successfully");
+      }
+      
+
+      refetch();
+
+
+    },
+    onError: (error) => {
+      toast.error("Error deleting module");
+    },
+  });
+
+  const handleDelete = (id: string) => {
+    _DeleteResource.mutate(id);
+  }
+
+
   useEffect(() => {
     refetch();
   }, []);
+
+
 
 
   return (
@@ -89,6 +117,16 @@ function ResourceTable(
                 Actions
               </div>
             </th>
+            <th className="table_header">
+              <div
+                className="th_value"
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                Delete
+              </div>
+            </th>
           </tr>
         </thead>
         {data &&
@@ -145,6 +183,27 @@ function ResourceTable(
                             fill="currentcolor"
                           ></path>
                         </svg>
+                      </div>
+                    </a>
+                  </div>
+                </td>
+
+                <td>
+                  <div className="table_td is_last">
+                    <a
+                      id="w-node-_36c87bdb-82bc-2721-2e66-6e958fbcfc25-cfb0ca4f"
+                      href="#"
+                      className="view_link w-inline-block"
+                      onClick={() => {
+                        handleDelete(item?.id);
+                      }}
+                    >
+                      <div
+                        id="w-node-_36c87bdb-82bc-2721-2e66-6e958fbcfc26-cfb0ca4f"
+                        className="view_icon w-embed"
+                      >
+                        
+                        <img src="https://img.icons8.com/ios/50/000000/delete-sign.png" />
                       </div>
                     </a>
                   </div>
