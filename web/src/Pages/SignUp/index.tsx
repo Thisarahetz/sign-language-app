@@ -1,13 +1,87 @@
 import { useMutation } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SignUpApiCall } from "../../Api/Services/Auth";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import useUserStore from "../../Store";
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
+import { getFacebookLoginStatus, fbLogin, getFacebookProfile } from "../../Utility/FacebookSDK";
+import axios from "axios";
 
 export default function SignUp() {
   const navigate = useNavigate();
   const setUser = useUserStore((state) => state.setUser);
+  const loginGoogle = useGoogleLogin({
+    onSuccess: (codeResponse) => {
+      console.log("Login Success:", codeResponse);
+      // Send the code to your server to get the token
+      if (codeResponse.access_token) {
+        axios
+          .get(
+            `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${codeResponse.access_token}`,
+            {
+              headers: {
+                Authorization: `Bearer ${codeResponse.access_token}`,
+                Accept: "application/json",
+              },
+            }
+          )
+          .then((res) => {
+            console.log(res.data);
+            setUser({
+       
+                success: true,
+                data: {
+                  id: res.data.id,
+                  name: res.data.name,
+           
+              },
+            });
+  
+            navigate("/dashboard");
+          })
+          .catch((err) => console.log(err));
+      }
+    },
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
+
+  useEffect(() => {
+    getFacebookLoginStatus().then((response) => {
+      if (response == null) {
+        console.log("No login status for the person");
+      } else {
+        console.log(response);
+      }
+    });
+    googleLogout();
+  }, []);
+  function loginFacebook() {
+    fbLogin().then((response) => {
+      if (response.status === "connected") {
+        
+        getFacebookProfile().then((profile) => {
+          console.log(profile);
+          setUser({
+     
+              success: true,
+              data: {
+                id: profile.id,
+                name: profile.name,
+              },
+            
+          });
+
+          navigate("/dashboard");
+        });
+        console.log("Person is connected");
+      } else {
+        // something
+      }
+    });
+  }
+
 
   const [state, setState] = useState({
     firstname: "",
@@ -226,9 +300,11 @@ export default function SignUp() {
                         - Or -
                       </div>
                       <div className="buttons-wrapper">
-                        <a
+                        <button
                           data-w-id="bb27abd8-2b7f-624e-870b-72a354c1d2c0"
-                          href="#"
+                          onClick={
+                            () => loginGoogle()
+                          }
                           className="link-block is-social w-inline-block"
                         >
                           <div className="social-icon-2 w-embed">
@@ -272,10 +348,12 @@ export default function SignUp() {
                           <div className="text-size-regular text-weight-medium">
                             Sign In with Gmail
                           </div>
-                        </a>
-                        <a
+                        </button>
+                        <button
                           data-w-id="bb27abd8-2b7f-624e-870b-72a354c1d2c4"
-                          href="#"
+                          onClick={
+                            () => loginFacebook()
+                          }
                           className="link-block is-social w-inline-block"
                         >
                           <div className="social-icon-2 w-embed">
@@ -295,7 +373,7 @@ export default function SignUp() {
                           <div className="text-size-regular text-weight-medium">
                             Facebook
                           </div>
-                        </a>
+                        </button>
                       </div>
                       <div
                         id="w-node-bb27abd8-2b7f-624e-870b-72a354c1d2c8-2109bf4a"

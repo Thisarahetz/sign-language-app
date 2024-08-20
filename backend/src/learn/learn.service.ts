@@ -10,7 +10,32 @@ import { title } from 'process';
 
 @Injectable()
 export class LearnService {
-  
+  async findOneModule(id: number) {
+    try {
+      const result = await this.conn
+        .select({
+          id: schema.module.id,
+          title: schema.module.title,
+          overview: schema.module.overview,
+          category: schema.module.category,
+          icon: schema.module.icon,
+          createdAt: schema.module.createdAt,
+          updatedAt: schema.module.updatedAt,
+        })
+        .from(schema.module)
+        .where(eq(schema.module.id, id))
+        .execute();
+
+      return {
+        status: true,
+        message: 'Module fetched successfully',
+        data: result,
+      };
+    } catch (error) {
+      throw error;
+    }
+  }
+
   constructor(
     @Inject(PG_CONNECTION) private conn: NodePgDatabase<typeof schema>,
   ) {}
@@ -63,6 +88,7 @@ export class LearnService {
             title: schema.resource.title,
             name: schema.resource.name,
             overview: schema.resource.overview,
+            description: schema.resource.description,
             video: schema.resource.video,
             review: schema.resource.review,
             module_id: schema.resource.module_id,
@@ -123,7 +149,7 @@ export class LearnService {
 
   async createResources(createLearnDto: CreateResourcesDto, id: number) {
     try {
-      const { name, overview, video, title , description } = createLearnDto;
+      const { name, overview, video, title, description } = createLearnDto;
 
       const result = await this.conn
         .insert(schema.resource)
@@ -172,6 +198,7 @@ export class LearnService {
           overview: schema.resource.overview,
           video: schema.resource.video,
           review: schema.resource.review,
+          description: schema.resource.description,
           module_id: schema.resource.module_id,
           createdAt: schema.resource.createdAt,
           updatedAt: schema.resource.updatedAt,
@@ -231,10 +258,8 @@ export class LearnService {
         message: 'Resource deleted successfully',
         data: result,
       };
-      
     } catch (error) {
       return error;
-      
     }
   }
   async removeModule(id: number) {
@@ -252,7 +277,6 @@ export class LearnService {
         throw new BadRequestException('Module has resources');
       }
 
-
       const result = await this.conn
         .delete(schema.module)
         .where(eq(schema.module.id, id))
@@ -263,12 +287,80 @@ export class LearnService {
         message: 'Module deleted successfully',
         data: result,
       };
-      
     } catch (error) {
       return error;
-      
     }
-    
+  }
+
+  async editResource(id: number, updateLearnDto: CreateResourcesDto) {
+    try {
+      const { title, name, overview, video, description } = updateLearnDto;
+
+      const result = await this.conn
+        .update(schema.resource)
+        .set({
+          title,
+          name,
+          overview,
+          video,
+          description,
+        })
+        .where(eq(schema.resource.id, id))
+        .returning({
+          id: schema.resource.id,
+          title: schema.resource.title,
+          name: schema.resource.name,
+          overview: schema.resource.overview,
+          video: schema.resource.video,
+          review: schema.resource.review,
+          module_id: schema.resource.module_id,
+          createdAt: schema.resource.createdAt,
+          updatedAt: schema.resource.updatedAt,
+        })
+        .execute();
+
+      return {
+        status: true,
+        message: 'Resource updated successfully',
+        data: result,
+      };
+    } catch (error) {
+      return error;
+    }
+  }
+
+  async editModule(id: number, updateLearnDto: CreateLearnDto) {
+    try {
+      const { title, overview, category, icon } = updateLearnDto;
+
+      const result = await this.conn
+        .update(schema.module)
+        .set({
+          title,
+          overview,
+          category,
+          icon,
+        })
+        .where(eq(schema.module.id, id))
+        .returning({
+          id: schema.module.id,
+          title: schema.module.title,
+          overview: schema.module.overview,
+          category: schema.module.category,
+          icon: schema.module.icon,
+          createdAt: schema.module.createdAt,
+          updatedAt: schema.module.updatedAt,
+        })
+        .execute();
+
+      return {
+        status: true,
+        message: 'Module updated successfully',
+        data: result,
+      };
+    } catch (error) {
+      return error;
+    }
   }
 
   findOne(id: number) {

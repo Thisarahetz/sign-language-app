@@ -1,17 +1,23 @@
 import TableNoData from "@components/Common/NoData/TableNoData";
 import TableLoader from "@components/Loaders/Table";
-import { CreateNewResource, DeleteResource, getAllModule, getAllResourcesByModuleId } from "@src/Api/Services/Module";
+import {
+  CreateNewResource,
+  DeleteResource,
+  getAllModule,
+  getAllResourcesByModuleId,
+} from "@src/Api/Services/Module";
 import APP_ROUTES from "@src/Constants/route";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-
-function ResourceTable(
-  moduleId: any
-) {
+function ResourceTable(moduleId: any) {
   const navigate = useNavigate();
+
+  if(!moduleId.moduleId) {
+    navigate(APP_ROUTES.MODULE);
+  }
 
   const { data, isLoading, isError, isSuccess, refetch } = useQuery({
     queryKey: ["getAllModule"],
@@ -21,17 +27,12 @@ function ResourceTable(
   //mutation to delete resource
   const _DeleteResource = useMutation({
     mutationFn: (id: string) => DeleteResource(id),
-    onSuccess: (
-      data
-    ) => {
-      if(data.status_code === 200){
+    onSuccess: (data) => {
+      if (data.status_code === 200) {
         toast.success("Resource deleted successfully");
       }
-      
 
       refetch();
-
-
     },
     onError: (error) => {
       toast.error("Error deleting module");
@@ -40,15 +41,11 @@ function ResourceTable(
 
   const handleDelete = (id: string) => {
     _DeleteResource.mutate(id);
-  }
-
+  };
 
   useEffect(() => {
     refetch();
   }, []);
-
-
-
 
   return (
     <div
@@ -107,7 +104,7 @@ function ResourceTable(
             <th className="table_header">
               <div className="th_value">Created At</div>
             </th>
-            <th className="table_header">
+            {/* <th className="table_header">
               <div
                 className="th_value"
                 style={{
@@ -115,6 +112,16 @@ function ResourceTable(
                 }}
               >
                 Actions
+              </div>
+            </th> */}
+            <th className="table_header">
+              <div
+                className="th_value"
+                style={{
+                  textAlign: "center",
+                }}
+              >
+                Delete
               </div>
             </th>
             <th className="table_header">
@@ -124,7 +131,7 @@ function ResourceTable(
                   textAlign: "center",
                 }}
               >
-                Delete
+                Edit
               </div>
             </th>
           </tr>
@@ -145,9 +152,8 @@ function ResourceTable(
                 <td className="table_cell">
                   <div className="td_value">{item?.createdAt}</div>
                 </td>
-                    
 
-                <td>
+                {/* <td>
                   <div className="table_td is_last">
                     <a
                       id="w-node-_36c87bdb-82bc-2721-2e66-6e958fbcfc25-cfb0ca4f"
@@ -186,7 +192,7 @@ function ResourceTable(
                       </div>
                     </a>
                   </div>
-                </td>
+                </td> */}
 
                 <td>
                   <div className="table_td is_last">
@@ -202,12 +208,32 @@ function ResourceTable(
                         id="w-node-_36c87bdb-82bc-2721-2e66-6e958fbcfc26-cfb0ca4f"
                         className="view_icon w-embed"
                       >
-                        
                         <img src="https://img.icons8.com/ios/50/000000/delete-sign.png" />
                       </div>
                     </a>
                   </div>
                 </td>
+                <td>
+                    <div className="table_td is_last">
+                      <a
+                        id="w-node-_36c87bdb-82bc-2721-2e66-6e958fbcfc25-cfb0ca4f"
+                        href="#"
+                        className="view_link w-inline-block"
+                        onClick={() => {
+                          navigate(APP_ROUTES.EDIT_RESOURCE, {
+                            state: item,
+                          });
+                        }}
+                      >
+                        <div
+                          id="w-node-_36c87bdb-82bc-2721-2e66-6e958fbcfc26-cfb0ca4f"
+                          className="view_icon w-embed"
+                        >
+                          <img src="https://img.icons8.com/ios/50/000000/edit.png" />
+                        </div>
+                      </a>
+                    </div>
+                  </td>
               </tr>
             </tbody>
           ))}

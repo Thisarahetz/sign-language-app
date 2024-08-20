@@ -7,7 +7,7 @@ import ResourceTable from "@components/Tables/Resource";
 export default function ResourceManagePage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const moduleId = location.state;
+  const id = location.state.id
 
   return (
     <>
@@ -17,7 +17,7 @@ export default function ResourceManagePage() {
         ButtonWrapper={
           <DefaultButton
             onClick={() => {
-              navigate(APP_ROUTES.ADD_RESOURCE, { state: moduleId });
+              navigate(APP_ROUTES.ADD_RESOURCE, { state: id });
             }}
             buttonText={"Add Resource"}
             buttonColor={"black"}
@@ -27,7 +27,9 @@ export default function ResourceManagePage() {
       />
 
       <div className="full_grid_wrapper">
-        <ResourceTable moduleId={moduleId} />
+        <ResourceTable moduleId={
+          id
+        } />
       </div>
     </>
   );

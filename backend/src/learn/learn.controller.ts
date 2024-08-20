@@ -66,4 +66,21 @@ export class LearnController {
   removeResource(@Param('id') id: string) {
     return this.learnService.removeResource(+id);
   }
+
+  //edit resource
+  @Patch('resource/:id')
+  editResource(@Param('id') id: string, @Body() updateLearnDto: CreateResourcesDto) {
+    return this.learnService.editResource(+id, updateLearnDto);
+  }
+
+  //edit module
+  @Patch('module/:id')
+  editModule(@Param('id') id: string, @Body() updateLearnDto: CreateLearnDto) {
+    return this.learnService.editModule(+id, updateLearnDto);
+  }
+
+  @Get('module/:id')
+  findOneModule(@Param('id') id: string) {
+    return this.learnService.findOneModule(+id);
+  }
 }

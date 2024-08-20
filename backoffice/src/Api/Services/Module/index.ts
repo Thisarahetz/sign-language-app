@@ -54,4 +54,24 @@ export const DeleteResource = async (id: string) => {
 };
 
 
+//update module
+export const UpdateModule = async (id: string, data: any) => {
+  const response = await APICLIENT.patch(`/learn/module/${id}`, data);
+  return response.data;
+};
+
+//update resource
+export const UpdateResource = async (id: string, data: any) => {
+  const response = await APICLIENT.patch(`/learn/resource/${id}`, data);
+  return response.data;
+};
+
+
+//get module by id
+export const GetModuleById = async (id: string) => {
+  const response = await APICLIENT.get(`/learn/module/${id}`);
+  return response.data;
+};
+
+
 

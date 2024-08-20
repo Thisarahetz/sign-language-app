@@ -15,6 +15,8 @@ import ModuleManagePage from "@pages/Module/Manage";
 import ResourceManagePage from "@pages/Resouces/Manage";
 import ModuleAddPage from "@pages/Module/Add";
 import ResourceAddPage from "@pages/Resouces/Add";
+import ModuleEditPage from "@pages/Module/Edit";
+import ResourceEditPage from "@pages/Resouces/Edit";
 
 function App() {
   return (
@@ -33,9 +35,11 @@ function App() {
 
           <Route path={APP_ROUTES.MODULE} element={<ModuleManagePage />} />
           <Route path={APP_ROUTES.ADD_MODULE} element={<ModuleAddPage />} />
+          <Route path={APP_ROUTES.EDIT_MODULE} element={<ModuleEditPage />} />
 
           <Route path={APP_ROUTES.RESOURCE} element={<ResourceManagePage />} />
           <Route path={APP_ROUTES.ADD_RESOURCE} element={<ResourceAddPage />} />
+          <Route path={APP_ROUTES.EDIT_RESOURCE} element={<ResourceEditPage />} />
       
 
           {/* My Account */}

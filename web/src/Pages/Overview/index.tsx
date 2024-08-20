@@ -34,7 +34,11 @@ function Overview() {
               <div className="padding-section-small">
                 <div className="section_component">
                   <div className="button-wrapper is-space-between">
-                    <a href="#" className="back-button-wrapper w-inline-block">
+                    <button onClick={
+                      () => {
+                        navigator(-1);
+                      }
+                    } className="back-button-wrapper w-inline-block">
                       <div className="icon-1x1-small w-embed">
                         <svg
                           width="24"
@@ -53,7 +57,7 @@ function Overview() {
                         </svg>
                       </div>
                       <div>Back</div>
-                    </a>
+                    </button>
                     <button className="back-button-wrapper w-inline-block" onClick={
                       () => {
                         navigator("practice", { state: { module_id: resourse_id } });
@@ -103,9 +107,15 @@ function Overview() {
                   </div>
                   <div className="spacer-3"></div>
                   <div className="button-wrapper is-center">
-                    <a href="#" className="button is-secondary w-button">
+                    <button 
+                    onClick={
+                      () => {
+                        navigator("practice", { state: { module_id: resourse_id } });
+                      }
+                    }
+                     className="button is-secondary w-button">
                       Continue
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>

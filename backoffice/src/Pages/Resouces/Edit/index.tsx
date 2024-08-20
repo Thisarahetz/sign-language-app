@@ -6,24 +6,37 @@ import APP_ROUTES from "@src/Constants/route";
 import DefaultButton from "@components/Button/Default";
 import Icon from "@assets/doc.svg";
 import { useMutation } from "@tanstack/react-query";
-import {  CreateNewResource } from "@src/Api/Services/Module";
+import { CreateNewResource, UpdateResource } from "@src/Api/Services/Module";
 import ResourceForm from "@components/Forms/Resource";
+import { useEffect } from "react";
 
-export default function ResourceAddPage() {
+export default function ResourceEditPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const id = location.state
+  const resource_Id = location.state.id
 
   const CreateResource = useMutation({
-    mutationFn: (values: any) => CreateNewResource(id, values),
+    mutationFn: (values: any) => UpdateResource(resource_Id, values),
     onSuccess: (data: any) => {
       toast.success(data.message);
-      navigate(APP_ROUTES.RESOURCE, { state: id });
+      navigate(APP_ROUTES.MODULE);
     },
     onError: (error: any) => {
       toast.error(error.response.data.message);
     },
   });
+
+  useEffect(() => {
+    if (location.state) {
+      const { title, name, overview, video, description } = location.state;
+      setFieldValue("title", title);
+      setFieldValue("name", name);
+      setFieldValue("overview", overview);
+      setFieldValue("video", video);
+      setFieldValue("sign", description.sign);
+      setFieldValue("Phrases", description.Phrases);
+    }
+  }, [location.state]);
 
   type initialValues = {
     title: string;

@@ -5,6 +5,7 @@ const APP_ROUTES = {
   EDIT_MODULE: "/module/edit",
   RESOURCE: "/resource",
   ADD_RESOURCE: "/resource/add",
+  EDIT_RESOURCE: "/resource/edit",
   DRIVERS: "/drivers",
   DRIVERS_PENDING: "/drivers-pending",
   DRIVERS_INFO: "/drivers/info",

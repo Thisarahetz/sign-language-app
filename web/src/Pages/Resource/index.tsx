@@ -18,7 +18,6 @@ function Resource() {
     query.refetch();
   }, []);
 
-  console.log(query.data);
 
   return (
     <main className="main-wrapper">

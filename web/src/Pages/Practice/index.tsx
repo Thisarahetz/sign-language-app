@@ -6,13 +6,13 @@ import NormalButton from "../../Components/Icon/NormalButton";
 import { ReactMediaRecorder } from "react-media-recorder";
 import playCircle from "../../assets/icon/play-circle-svgrepo-com.svg";
 import stopVideoIcon from "../../assets/icon/stop-circle-svgrepo-com.svg";
-import { useLocation } from "react-router-dom";
+import dawnlodIcon from "../../assets/icon/save-svgrepo-com.svg";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getResourceId } from "../../Api/Services/learn";
 
 const VideoPreview = (props: { stream: MediaStream }) => {
   const stream = props.stream;
-  console.log(stream);
   const videoRef = useRef(null);
   useEffect(() => {
     if (videoRef.current && stream) {
@@ -86,6 +86,7 @@ function Practice() {
   let [audioOnOff, setAudio] = useState(true);
 
   const location = useLocation();
+  const navigator = useNavigate();
   const { state } = location;
 
   const resourse_id = state?.module_id
@@ -255,7 +256,12 @@ function Practice() {
               <div className="padding-section-small">
                 <div className="section_component">
                   <div className="button-wrapper is-space-between">
-                    <a href="#" className="back-button-wrapper w-inline-block">
+                    <button 
+                    onClick={() => {
+                      navigator(-1);
+                    }
+                    }
+                     className="back-button-wrapper w-inline-block">
                       <div className="icon-1x1-small w-embed">
                         <svg
                           width="24"
@@ -274,7 +280,7 @@ function Practice() {
                         </svg>
                       </div>
                       <div>Back</div>
-                    </a>
+                    </button>
                     <a href="/dashboard" className="back-button-wrapper w-inline-block">
                       <div>Finish Lesson</div>
                       <div className="icon-1x1-small w-embed">
@@ -299,7 +305,7 @@ function Practice() {
                   <div className="spacer-2"></div>
                   <h5 className="heading-style-h5">Lesson: 01</h5>
                   <h2 className="heading-style-h3">
-                    Review : Practice &quot;What&#x27;{query?.data?.data.name}`&quot;
+                    Review : Practice &quot;{query?.data?.data?.description?.sign}&quot;
                   </h2>
                   <div className="spacer-xsmall"></div>
                   <div className="text-size-regular">
@@ -465,7 +471,7 @@ function Practice() {
                           className="video-button-wrapper w-inline-block"
                         >
                           <div className="icon-1x1-small w-embed">
-                            <img src={stopVideoIcon} alt="stop" />
+                            <img src={dawnlodIcon} alt="stop" />
                           </div>
                         </button>
                       </div>

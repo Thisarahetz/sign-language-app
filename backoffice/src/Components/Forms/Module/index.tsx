@@ -50,8 +50,13 @@ function ModuleForm({
                 name="title"
                 data-name="title"
                 value={values.title}
-                onChange={handleChange}
+                onChange={
+                  handleChange
+
+                }
                 onBlur={handleBlur}
+                
+                
               />
               {errors.title && touched.title ? (
                 <div className="error_text">{errors.title}</div>
