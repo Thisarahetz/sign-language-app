@@ -1,0 +1,11 @@
+Flask
+numpy
+Pillow
+requests
+tensorflow==2.12.1
+Flask-CORS
+Flask-SocketIO
+mediapipe
+opencv-python
+pyngrok
+uuid
