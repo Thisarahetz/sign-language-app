@@ -1,0 +1,4 @@
+docker run -p 5001:5001 flask-app
+
+
+This project integrates machine learning and image processing to create a gesture recognition system that processes video input to identify specific hand gestures. Using OpenCV for video handling, the system extracts frames and leverages MediaPipe to detect hand landmarks, converting them into numerical keypoints. These features are then normalized and reshaped to prepare them as input for a pre-trained TensorFlow model, which classifies the gesture into predefined categories. The combination of image processing for feature extraction and machine learning for classification ensures accurate recognition of gestures. This solution can be used for sign language detection, interactive systems, or real-time gesture-based controls.

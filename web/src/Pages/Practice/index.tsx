@@ -10,6 +10,10 @@ import dawnlodIcon from "../../assets/icon/save-svgrepo-com.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getResourceId } from "../../Api/Services/learn";
+import { uploadFile } from "../../firebase";
+import CustomizedDialogs from "../../Components/Model";
+import { GetDetection, response } from "../../Api/Services/Detection";
+import { toast } from "sonner";
 
 const VideoPreview = (props: { stream: MediaStream }) => {
   const stream = props.stream;
@@ -84,13 +88,16 @@ function recordedVideo(mediaBlob: any, status: string) {
 
 function Practice() {
   let [audioOnOff, setAudio] = useState(true);
+  const [isLoader, setIsLoader] = useState(false);
+  const [predictedResult, setPredictedResult] = useState<response>(
+    {} as response
+  );
 
   const location = useLocation();
   const navigator = useNavigate();
   const { state } = location;
 
-  const resourse_id = state?.module_id
-
+  const resourse_id = state?.module_id;
 
   const query = useQuery({
     queryKey: ["resource", resourse_id],
@@ -102,8 +109,6 @@ function Practice() {
   }, []);
 
   console.log(query?.data?.data);
-
-
 
   // Refs to store the start/stop recording functions
   const startRecordingRef = useRef(() => {});
@@ -206,10 +211,57 @@ function Practice() {
     }
   };
 
-  const dawnloadWrapper = () => {
+  const dawnloadWrapper = async () => {
+
+    // Create a File object from the blob
+    // const file = new File([
+    //   mediaBlobUrl
+    // ], `video_${Date.now()}.mp4`, { type: mediaBlobUrl.type });
+
+    // // Extract video metadata (duration)
+    // // const videoMetadata = await getVideoMetadata(file);
+
+    // // if (!videoMetadata || videoMetadata.duration === 0) {
+    // //   toast.error("Invalid video. Duration is missing or zero.");
+    // //   setIsLoader(false);
+    // //   return;
+    // // }
+
+    // // Upload the video file along with metadata
+    // const uploadedUrl = await uploadFile(file);
+  
+      
+  
+
+  
+    
+
+
+    
+    // if (!uploadedUrl) {
+    //   toast.error("Error in uploading video");
+    //   setIsLoader(false);
+    
+    // }
+
+    
+
+    // const predictedAnswer = await GetDetection({
+    //   image_url: uploadedUrl,
+    //   answer: 'a',
+    // });
+
+    // if (!predictedAnswer) {
+    //   toast.error("Error in getting prediction");
+    //   setIsLoader(false);
+    // }
+
+    // setPredictedResult(predictedAnswer);
+
+    setIsLoader(false);
     //dawnlod blob url
     const a = document.createElement("a");
-    document.body.appendChild(a);
+    document.body.appendChild(a); 
     a.style.display = "none";
     a.href = mediaBlobUrl;
     //generate file name
@@ -245,6 +297,17 @@ function Practice() {
 
   return (
     <main className="main-wrapper">
+      {isLoader && (
+        <CustomizedDialogs
+          open={isLoader}
+          handleClose={() => setIsLoader(false)}
+          videoUrl={mediaBlobUrl}
+          predicted={predictedResult.predicted}
+          result={predictedResult.result}
+          isLoader={isLoader}
+        />
+      )}
+
       <div
         data-barba-namespace="home"
         data-barba="container"
@@ -256,12 +319,12 @@ function Practice() {
               <div className="padding-section-small">
                 <div className="section_component">
                   <div className="button-wrapper is-space-between">
-                    <button 
-                    onClick={() => {
-                      navigator(-1);
-                    }
-                    }
-                     className="back-button-wrapper w-inline-block">
+                    <button
+                      onClick={() => {
+                        navigator(-1);
+                      }}
+                      className="back-button-wrapper w-inline-block"
+                    >
                       <div className="icon-1x1-small w-embed">
                         <svg
                           width="24"
@@ -281,7 +344,10 @@ function Practice() {
                       </div>
                       <div>Back</div>
                     </button>
-                    <a href="/dashboard" className="back-button-wrapper w-inline-block">
+                    <a
+                      href="/dashboard"
+                      className="back-button-wrapper w-inline-block"
+                    >
                       <div>Finish Lesson</div>
                       <div className="icon-1x1-small w-embed">
                         <svg
@@ -305,7 +371,8 @@ function Practice() {
                   <div className="spacer-2"></div>
                   <h5 className="heading-style-h5">Lesson: 01</h5>
                   <h2 className="heading-style-h3">
-                    Review : Practice &quot;{query?.data?.data?.description?.sign}&quot;
+                    Review : Practice &quot;
+                    {query?.data?.data?.description?.sign}&quot;
                   </h2>
                   <div className="spacer-xsmall"></div>
                   <div className="text-size-regular">
@@ -319,14 +386,9 @@ function Practice() {
                     >
                       <div className="video-wrapper">
                         <video
-                
                           width="100%"
                           height="100%"
-                        
-                          src={
-                            query?.data?.data.video
-                            
-                          }
+                          src={query?.data?.data.video}
                           ref={videoRef}
                         ></video>
                       </div>
@@ -458,21 +520,54 @@ function Practice() {
                             <img src={playCircle} alt="start" />
                           </div>
                         </button>
-                        <button
+                        {/* <button
                           onClick={() => stopRecordingWrapper()}
                           className="video-button-wrapper w-inline-block"
                         >
                           <div className="icon-1x1-small w-embed">
                             <img src={stopVideoIcon} alt="stop" />
                           </div>
+                        </button> */}
+
+                        <button
+                          onClick={videoReplay}
+                          className="video-button-wrapper w-inline-block"
+
+                        >
+                          <div className="icon-1x1-small w-embed">
+                            <svg
+                              width="20"
+                              height="20"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M1 4.00001V10M1 10H7M1 10L5.64 5.64001C7.02091 4.26143 8.81245 3.36898 10.7447 3.09713C12.6769 2.82527 14.6451 3.18874 16.3528 4.13277C18.0605 5.0768 19.4152 6.55025 20.2126 8.33111C21.0101 10.112 21.2072 12.1038 20.7742 14.0064C20.3413 15.909 19.3017 17.6194 17.8121 18.8798C16.3226 20.1402 14.4637 20.8824 12.5157 20.9945C10.5677 21.1066 8.63598 20.5826 7.01166 19.5014C5.38734 18.4202 4.15839 16.8404 3.51 15"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              ></path>
+                            </svg>
+                          </div>
+
                         </button>
                         <button
                           onClick={() => dawnloadWrapper()}
-                          className="video-button-wrapper w-inline-block"
+                          style={{
+                            cursor: "pointer",
+                            backgroundColor: "green",
+                            color: "white",
+                            padding: "10px",
+                            borderRadius: "5px",
+                          }}
+                          // className="video-button-wrapper w-inline-block"
                         >
-                          <div className="icon-1x1-small w-embed">
+                          Check Your Video
+                          {/* <div className="icon-1x1-small w-embed">
                             <img src={dawnlodIcon} alt="stop" />
-                          </div>
+                          </div> */}
                         </button>
                       </div>
                     </div>
@@ -487,4 +582,26 @@ function Practice() {
   );
 }
 
+
+async function getVideoMetadata(file: File): Promise<{ duration: number }> {
+  return new Promise((resolve, reject) => {
+    const video = document.createElement('video');
+    video.preload = 'metadata';
+
+    video.onloadedmetadata = () => {
+      window.URL.revokeObjectURL(video.src);
+      resolve({ duration: video.duration });
+    };
+
+    video.onerror = () => {
+      reject(new Error('Failed to load video metadata'));
+    };
+
+    video.src = URL.createObjectURL(file);
+  });
+}
+
+
 export default Practice;
+
+
