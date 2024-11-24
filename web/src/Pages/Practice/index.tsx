@@ -89,6 +89,7 @@ function recordedVideo(mediaBlob: any, status: string) {
 function Practice() {
   let [audioOnOff, setAudio] = useState(true);
   const [isLoader, setIsLoader] = useState(false);
+  const [isPredicted, setIsPredicted] = useState(false);
   const [predictedResult, setPredictedResult] = useState<response>(
     {} as response
   );
@@ -212,63 +213,36 @@ function Practice() {
   };
 
   const dawnloadWrapper = async () => {
+    if (mediaBlobUrl) {
+     setIsLoader(true);
+     setIsPredicted(true);
+      const fileName = `video-${new Date().getTime()}.webm`;
 
-    // Create a File object from the blob
-    // const file = new File([
-    //   mediaBlobUrl
-    // ], `video_${Date.now()}.mp4`, { type: mediaBlobUrl.type });
+      // Upload the file to Firebase Storage
+      const file = await fetch(mediaBlobUrl).then((res) => res.blob());
 
-    // // Extract video metadata (duration)
-    // // const videoMetadata = await getVideoMetadata(file);
+      //tosat
+      toast.success("Video Uploaded Successfully");
 
-    // // if (!videoMetadata || videoMetadata.duration === 0) {
-    // //   toast.error("Invalid video. Duration is missing or zero.");
-    // //   setIsLoader(false);
-    // //   return;
-    // // }
+      const url = await uploadFile(file, fileName);
 
-    // // Upload the video file along with metadata
-    // const uploadedUrl = await uploadFile(file);
-  
+
+
+      const data = await GetDetection({
+        image_url: url,
+        answer: predictedResult.predicted || "",
+      });
+
+      if (data.result) {
+        setIsPredicted(false);
+        setPredictedResult(data);
       
-  
-
-  
-    
-
-
-    
-    // if (!uploadedUrl) {
-    //   toast.error("Error in uploading video");
-    //   setIsLoader(false);
-    
-    // }
-
-    
-
-    // const predictedAnswer = await GetDetection({
-    //   image_url: uploadedUrl,
-    //   answer: 'a',
-    // });
-
-    // if (!predictedAnswer) {
-    //   toast.error("Error in getting prediction");
-    //   setIsLoader(false);
-    // }
-
-    // setPredictedResult(predictedAnswer);
-
-    setIsLoader(false);
-    //dawnlod blob url
-    const a = document.createElement("a");
-    document.body.appendChild(a); 
-    a.style.display = "none";
-    a.href = mediaBlobUrl;
-    //generate file name
-    const date = new Date();
-    a.download = `video_${date.getTime()}.mp4`;
-    a.click();
-    window.URL.revokeObjectURL(mediaBlobUrl);
+      
+      } else {
+       ;
+        toast.error("Something went wrong");
+      }
+    }
   };
 
   const slowDownVideo = () => {
@@ -304,7 +278,7 @@ function Practice() {
           videoUrl={mediaBlobUrl}
           predicted={predictedResult.predicted}
           result={predictedResult.result}
-          isLoader={isLoader}
+          isLoader={isPredicted}
         />
       )}
 
@@ -467,6 +441,12 @@ function Practice() {
                       <div className="video-wrapper">
                         <ReactMediaRecorder
                           video
+                          blobPropertyBag={
+                            {
+                              type: "video/webm",
+                              duration: 1000,
+                            } as BlobPropertyBag
+                          }
                           audio={audioOnOff}
                           render={({
                             status,
@@ -520,19 +500,43 @@ function Practice() {
                             <img src={playCircle} alt="start" />
                           </div>
                         </button>
-                        {/* <button
-                          onClick={() => stopRecordingWrapper()}
-                          className="video-button-wrapper w-inline-block"
-                        >
-                          <div className="icon-1x1-small w-embed">
-                            <img src={stopVideoIcon} alt="stop" />
-                          </div>
-                        </button> */}
+                        {
+                          <button
+                            onClick={() => stopRecordingWrapper()}
+                            className="video-button-wrapper w-inline-block"
+                          >
+                            <div className="icon-1x1-small w-embed">
+                              <img src={stopVideoIcon} alt="stop" />
+                            </div>
+                          </button>
+                        }
+                        {
+                         
+                            <input 
+                            type="text" 
+                            placeholder="Enter your prediction"
+                            style={{
+                              padding: "10px",
+                              borderRadius: "5px",
+                              border: "1px solid #000",
+                              margin: "10px",
+                            }}
+                           
+                            onChange={(e) => {
+                              setPredictedResult({
+                                ...predictedResult,
+                                predicted: e.target.value,
+                              });
+                            }}
+                          />
+                 
+                          
+                        }
+                
 
-                        <button
+                        {/* <button
                           onClick={videoReplay}
                           className="video-button-wrapper w-inline-block"
-
                         >
                           <div className="icon-1x1-small w-embed">
                             <svg
@@ -551,8 +555,7 @@ function Practice() {
                               ></path>
                             </svg>
                           </div>
-
-                        </button>
+                        </button> */}
                         <button
                           onClick={() => dawnloadWrapper()}
                           style={{
@@ -564,7 +567,7 @@ function Practice() {
                           }}
                           // className="video-button-wrapper w-inline-block"
                         >
-                          Check Your Video
+                          <div>Submit</div>
                           {/* <div className="icon-1x1-small w-embed">
                             <img src={dawnlodIcon} alt="stop" />
                           </div> */}
@@ -582,26 +585,4 @@ function Practice() {
   );
 }
 
-
-async function getVideoMetadata(file: File): Promise<{ duration: number }> {
-  return new Promise((resolve, reject) => {
-    const video = document.createElement('video');
-    video.preload = 'metadata';
-
-    video.onloadedmetadata = () => {
-      window.URL.revokeObjectURL(video.src);
-      resolve({ duration: video.duration });
-    };
-
-    video.onerror = () => {
-      reject(new Error('Failed to load video metadata'));
-    };
-
-    video.src = URL.createObjectURL(file);
-  });
-}
-
-
 export default Practice;
-
-

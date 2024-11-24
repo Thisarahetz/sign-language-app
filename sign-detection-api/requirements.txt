@@ -9,3 +9,4 @@ mediapipe
 opencv-python
 pyngrok
 uuid
+ffmpeg-python
