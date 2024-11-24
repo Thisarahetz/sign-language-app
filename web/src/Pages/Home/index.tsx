@@ -13,9 +13,10 @@ export default function Home() {
                 <div className="w-layout-grid grid-2-column">
                   <div id="w-node-c8352421-b10c-aa29-4cea-bfe484a05b1d-51c2df9a" className="grid-content-left is-home-hero">
                     <div className="max-width-medium">
-                      <h1 className="heading-style-h1 text-weight-semibold">Learn American Sign Language</h1>
+                      <h1 className="heading-style-h1 text-weight-semibold">සංඥා පාසල
+                      </h1>
                       <div className="spacer-custom1"></div>
-                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-weight-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-weight-medium">test details </p>
                       <div className="spacer-custom1"></div>
                       <a href="#" className="button w-button">Start learning</a>
                     </div>
@@ -81,7 +82,7 @@ export default function Home() {
                     <div className="container-small text-align-center">
                       <h1 className="heading-style-h3">Learning ASL at your own pace</h1>
                       <div className="spacer-custom1"></div>
-                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">test details </p>
                       <div className="spacer-custom1"></div>
                       <div className="button-wrapper is-home-hero">
                         <a href="#" className="button w-button">Sign up now</a>
@@ -108,7 +109,7 @@ export default function Home() {
                   <div className="spacer-custom1"></div>
                   <h1 className="heading-style-h3">SignSchool is a fun and free resource</h1>
                   <div className="spacer-custom1"></div>
-                  <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                  <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey"></p>
                   <div className="spacer-3"></div>
                 </div>
                 <div className="w-layout-grid grid-3-column">
@@ -122,7 +123,7 @@ export default function Home() {
                     <div className="spacer-custom1"></div>
                     <h4 className="heading-style-h5 text-weight-medium">ASL in motion</h4>
                     <div className="spacer-0-5"></div>
-                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">test details.</p>
                   </div>
                   <div id="w-node-_46cffa8b-4bab-6d9f-3687-c59e0da5c6f0-51c2df9a" className="grid-content-features">
                     <div className="feature-icon-wrapper">
@@ -133,7 +134,7 @@ export default function Home() {
                     <div className="spacer-custom1"></div>
                     <h4 className="heading-style-h5 text-weight-medium">Interactive Learning</h4>
                     <div className="spacer-0-5"></div>
-                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">test details</p>
                   </div>
                   <div id="w-node-_5e36dbe5-88de-8c43-efe1-d86c16f15534-51c2df9a" className="grid-content-features">
                     <div className="feature-icon-wrapper">
@@ -144,7 +145,7 @@ export default function Home() {
                     <div className="spacer-custom1"></div>
                     <h4 className="heading-style-h5 text-weight-medium">Time efficient</h4>
                     <div className="spacer-0-5"></div>
-                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">test details </p>
                   </div>
                 </div>
               </div>
@@ -164,7 +165,7 @@ export default function Home() {
                   <div id="w-node-e613420f-679c-73a7-624a-cbe765fbcfa4-51c2df9a" className="grid-content-left">
                     <h1 className="heading-style-h2">Immerse Yourself in ASL</h1>
                     <div className="spacer-custom1"></div>
-                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-medium text-color-grey">Learn American Sign Language anytime, anywhere. For Free.</p>
+                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-medium text-color-grey">Learn sign language anytime, anywhere. For Free.</p>
                     <div className="spacer-custom1"></div>
                     <a href="#" className="button w-button">Sign up now</a>
                   </div>
@@ -182,7 +183,7 @@ export default function Home() {
                 <div className="container-small text-align-center">
                   <h1 className="heading-style-h2">Explore Our Learning Tools</h1>
                   <div className="spacer-custom1"></div>
-                  <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                  <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">test details</p>
                   <div className="spacer-3"></div>
                 </div>
                 <div className="w-layout-grid grid-3-column">
