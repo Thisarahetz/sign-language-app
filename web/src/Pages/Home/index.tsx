@@ -13,16 +13,17 @@ export default function Home() {
                 <div className="w-layout-grid grid-2-column">
                   <div id="w-node-c8352421-b10c-aa29-4cea-bfe484a05b1d-51c2df9a" className="grid-content-left is-home-hero">
                     <div className="max-width-medium">
+                    
                       <h1 className="heading-style-h1 text-weight-semibold">සංඥා පාසල
                       </h1>
                       <div className="spacer-custom1"></div>
-                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-weight-medium">test details </p>
+                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-weight-medium"> </p>
                       <div className="spacer-custom1"></div>
-                      <a href="#" className="button w-button">Start learning</a>
+                      <a href="sign-up" className="button w-button">ආරම්භ කරන්න</a>
                     </div>
                   </div>
                   <div id="w-node-c8352421-b10c-aa29-4cea-bfe484a05b1e-51c2df9a" className="grid-content-right">
-                    <div className="image-wrapper is_home_hero_circle"><img sizes="(max-width: 479px) 144.25px, (max-width: 991px) 230.796875px, 346.1875px" srcSet="images/Group-1-p-500.png 500w, images/Group-1-p-800.png 800w, images/Group-1-p-1080.png 1080w, images/Group-1.png 1154w" alt="" src="images/Group-1.png" loading="lazy" className="image-hero is_home_hero-metric2"/><img sizes="(max-width: 479px) 92vw, (max-width: 767px) 95vw, (max-width: 991px) 92vw, 94vw" srcSet="images/Section-p-500.png 500w, images/Section.png 595w" alt="" src="images/Section.png" loading="lazy" className="image-hero is_home_hero-man"/><img sizes="(max-width: 479px) 141.75px, (max-width: 991px) 226.796875px, 283.5px" srcSet="images/Group-2-p-500.png 500w, images/Group-2-p-800.png 800w, images/Group-2-p-1080.png 1080w, images/Group-2.png 1134w" alt="" src="images/Group-2.png" loading="lazy" className="image-hero is_home_hero-metric1"/>
+                    <div className="image-wrapper is_home_hero_circle"><img sizes="(max-width: 479px) 144.25px, (max-width: 991px) 230.796875px, 346.1875px" srcSet="images/Group-1-p-500.png 500w, images/Group-1-p-800.png 800w, images/Group-1-p-1080.png 1080w, images/Group-1.png 1154w" alt="" src="images/Sign-Language-GIrl-and-Therapist.jpg" loading="lazy" className="image-hero is_home_hero-metric2"/><img sizes="(max-width: 479px) 92vw, (max-width: 767px) 95vw, (max-width: 991px) 92vw, 94vw" srcSet="images/Section-p-500.png 500w, images/Section.png 595w" alt="" src="images/Section.png" loading="lazy" className="image-hero is_home_hero-man"/><img sizes="(max-width: 479px) 141.75px, (max-width: 991px) 226.796875px, 283.5px" srcSet="images/Group-2-p-500.png 500w, images/Group-2-p-800.png 800w, images/Group-2-p-1080.png 1080w, images/Group-2.png 1134w" alt="" src="images/Group-2.png" loading="lazy" className="image-hero is_home_hero-metric1"/>
                       <div className="image-hero is_home_hero-circle"></div>
                     </div>
                   </div>
@@ -40,30 +41,33 @@ export default function Home() {
                 <div className="w-layout-grid grid-repeat-column is-hero-bottom">
                   <div id="w-node-_7d919509-c5ef-0b31-501c-8f9ada43735c-51c2df9a" className="grid-content-repeate is-hero-bottom"><img src="images/victory_4994377.png" loading="lazy" sizes="48px" srcSet="images/victory_4994377-p-500.png 500w, images/victory_4994377.png 512w" alt="" className="image-cover is-hero-bottom"/>
                     <div>
-                      <h4 className="heading-style-h5 text-weight-medium">4-Level ASL Courses</h4>
+                      <h4 className="heading-style-h5 text-weight-medium">4-මට්ටමේ SSL පාඨමාලා
+                      </h4>
                       <div className="spacer-xsmall"></div>
-                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">Are you a student? Check out our ASL 1, 2, 3, &amp; 4 course options!</p>
+                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">ඔයා ශිෂ්යයකු ද? අපගේ SSL 1, 2, 3, සහ 4 පාඨමාලා විකල්ප පරීක්ෂා කරන්න </p>
                     </div>
                   </div>
                   <div id="w-node-_95333faa-0b8e-305f-fc50-1d5391906e98-51c2df9a" className="grid-content-repeate is-hero-bottom"><img src="images/3_9476579.png" loading="lazy" sizes="48px" srcSet="images/3_9476579-p-500.png 500w, images/3_9476579.png 512w" alt="" className="image-cover is-hero-bottom"/>
                     <div>
-                      <h4 className="heading-style-h5 text-weight-medium">School Options</h4>
+                      <h4 className="heading-style-h5 text-weight-medium">පාසල් විකල්ප
+                      </h4>
                       <div className="spacer-xsmall"></div>
-                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">Are you a teacher, school or organization? Check out our options for schools!</p>
+                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">ඔබ ගුරුවරයෙක්, පාසලක් හෝ සංවිධානයක්ද? පාසල් සඳහා අපගේ විකල්ප පරීක්ෂා කරන්න</p>
                     </div>
                   </div>
                   <div id="w-node-_13373894-16f5-8a48-305b-df1d239ed02a-51c2df9a" className="grid-content-repeate is-hero-bottom"><img src="images/victory_2609024.png" loading="lazy" sizes="48px" srcSet="images/victory_2609024-p-500.png 500w, images/victory_2609024.png 512w" alt="" className="image-cover is-hero-bottom"/>
                     <div>
-                      <h4 className="heading-style-h5 text-weight-medium">Homeschooling</h4>
+                      <h4 className="heading-style-h5 text-weight-medium">නිවසේ සිට අධ්‍යාපනය
+                      </h4>
                       <div className="spacer-xsmall"></div>
-                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">Are you homeschooling? We have options and discounts for you too!</p>
+                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">ඔබ ගෙදර අධ්‍යාපනය ලබනවාද? ඔබටත් විකල්ප  අප සතුව ඇත!</p>
                     </div>
                   </div>
                   <div id="w-node-b34cb360-897f-bcca-c565-41003466edcd-51c2df9a" className="grid-content-repeate is-hero-bottom"><img src="images/victory_4994377.png" loading="lazy" sizes="48px" srcSet="images/victory_4994377-p-500.png 500w, images/victory_4994377.png 512w" alt="" className="image-cover is-hero-bottom"/>
                     <div>
-                      <h4 className="heading-style-h5 text-weight-medium">Language Standards</h4>
+                      <h4 className="heading-style-h5 text-weight-medium">භාෂා  සම්මතයන් </h4>
                       <div className="spacer-xsmall"></div>
-                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">Our curriculum is aligned with the California World Language Standards and the ACTFL.</p>
+                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">අපගේ විෂය මාලාව කැලිෆෝනියාවේ ලෝක භාෂා ප්‍රමිති සහ ACTFL සමඟ සමපාත වේ.</p>
                     </div>
                   </div>
                 </div>
@@ -80,13 +84,13 @@ export default function Home() {
                 <div id="w-node-_66163284-bd82-de5f-9550-7e7f17b75057-51c2df9a" className="grid-content-left">
                   <div className="section_component">
                     <div className="container-small text-align-center">
-                      <h1 className="heading-style-h3">Learning ASL at your own pace</h1>
+                      <h1 className="heading-style-h3">ඔබේම වේගයෙන් SSL ඉගෙන ගමු </h1>
                       <div className="spacer-custom1"></div>
-                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">test details </p>
+                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey"></p>
                       <div className="spacer-custom1"></div>
                       <div className="button-wrapper is-home-hero">
-                        <a href="#" className="button w-button">Sign up now</a>
-                        <a href="#" className="button is-secondary w-button">See sign school in action</a>
+                        <a href="sign-up" className="button w-button">ලියාපදිංචි වන්න</a>
+                        <a href="#" className="button is-secondary w-button">සංඥා පාසල ක්‍රියාත්මක වන ආකාරය බලන්න </a>
                       </div>
                     </div>
                   </div>
@@ -105,9 +109,9 @@ export default function Home() {
             <div className="padding-section-medium">
               <div className="section_component">
                 <div className="container-small text-align-center">
-                  <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-small text-weight-semibold">Features</p>
+                  <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-small text-weight-semibold"></p>
                   <div className="spacer-custom1"></div>
-                  <h1 className="heading-style-h3">SignSchool is a fun and free resource</h1>
+                  <h1 className="heading-style-h3">SignCraft යනු විනෝදජනක සහ නිදහස් සම්පතකි  </h1>
                   <div className="spacer-custom1"></div>
                   <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey"></p>
                   <div className="spacer-3"></div>
@@ -121,9 +125,9 @@ export default function Home() {
                         </svg></div>
                     </div>
                     <div className="spacer-custom1"></div>
-                    <h4 className="heading-style-h5 text-weight-medium">ASL in motion</h4>
+                    <h4 className="heading-style-h5 text-weight-medium">SSL චලනය වේ  </h4>
                     <div className="spacer-0-5"></div>
-                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">test details.</p>
+                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">සංඥා භාෂාව (SSL) ප්‍රකාශ කිරීමට භාවිතා කරන අත් සහ මුහුණේ චලනයන් අදහස් කරයි.  </p>
                   </div>
                   <div id="w-node-_46cffa8b-4bab-6d9f-3687-c59e0da5c6f0-51c2df9a" className="grid-content-features">
                     <div className="feature-icon-wrapper">
@@ -132,9 +136,9 @@ export default function Home() {
                         </svg></div>
                     </div>
                     <div className="spacer-custom1"></div>
-                    <h4 className="heading-style-h5 text-weight-medium">Interactive Learning</h4>
+                    <h4 className="heading-style-h5 text-weight-medium">අන්තර් ක්රියාකාරී ඉගෙනීම  </h4>
                     <div className="spacer-0-5"></div>
-                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">test details</p>
+                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">ඉගෙනුම් ක්‍රියාවලියට ක්‍රියාකාරීව සම්බන්ධ වීමට සිසුන් දිරිමත් කරන ඉගැන්වීමේ ක්‍රමයක් </p>
                   </div>
                   <div id="w-node-_5e36dbe5-88de-8c43-efe1-d86c16f15534-51c2df9a" className="grid-content-features">
                     <div className="feature-icon-wrapper">
@@ -143,9 +147,10 @@ export default function Home() {
                         </svg></div>
                     </div>
                     <div className="spacer-custom1"></div>
-                    <h4 className="heading-style-h5 text-weight-medium">Time efficient</h4>
+                    <h4 className="heading-style-h5 text-weight-medium">කාලය කාර්යක්ෂමයි
+                    </h4>
                     <div className="spacer-0-5"></div>
-                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">test details </p>
+                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">අවම කාලය තුළ කාර්යයන් සම්පූර්ණ කිරීමට හෝ ඉලක්ක සපුරා ගැනීමට ඇති හැකියාව  </p>
                   </div>
                 </div>
               </div>
@@ -160,14 +165,14 @@ export default function Home() {
               <div className="section_component">
                 <div className="w-layout-grid grid-2-column is-home-asl">
                   <div id="w-node-e613420f-679c-73a7-624a-cbe765fbcfa5-51c2df9a" className="grid-content-right">
-                    <div className="image-wrapper is-home-asl"><img src="images/Frame-1321317054.png" loading="lazy" sizes="(max-width: 479px) 85vw, (max-width: 767px) 91vw, (max-width: 991px) 89vw, 91vw" srcSet="images/Frame-1321317054-p-500.png 500w, images/Frame-1321317054-p-800.png 800w, images/Frame-1321317054.png 870w" alt="" className="image-contain"/></div>
+                    <div className="image-wrapper is-home-asl"><img src="images/Sign-Language-GIrl-and-Therapist.jpg" loading="lazy" sizes="(max-width: 479px) 85vw, (max-width: 767px) 91vw, (max-width: 991px) 89vw, 91vw" srcSet="images/Sign-Language-GIrl-and-Therapist.jpg 500w, images/Sign-Language-GIrl-and-Therapist.jpg 800w, images/Sign-Language-GIrl-and-Therapist.jpg 870w" alt="" className="image-contain"/></div>
                   </div>
                   <div id="w-node-e613420f-679c-73a7-624a-cbe765fbcfa4-51c2df9a" className="grid-content-left">
-                    <h1 className="heading-style-h2">Immerse Yourself in ASL</h1>
+                    <h1 className="heading-style-h2">SSL හි කිමිදෙන්න</h1>
                     <div className="spacer-custom1"></div>
-                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-medium text-color-grey">Learn sign language anytime, anywhere. For Free.</p>
+                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-medium text-color-grey">ඕනෑම වේලාවක, ඕනෑම තැනක සංඥා භාෂාව නොමිලේ ඉගෙන ගන්න.</p>
                     <div className="spacer-custom1"></div>
-                    <a href="#" className="button w-button">Sign up now</a>
+                    <a href="/sign-up" className="button w-button">ලියාපදිංචි වන්න</a>
                   </div>
                 </div>
               </div>
@@ -181,41 +186,45 @@ export default function Home() {
             <div className="padding-section-medium">
               <div className="section_component">
                 <div className="container-small text-align-center">
-                  <h1 className="heading-style-h2">Explore Our Learning Tools</h1>
+                  <h1 className="heading-style-h2">අපගේ ඉගෙනුම් මෙවලම් ගවේෂණය කරන්න</h1>
                   <div className="spacer-custom1"></div>
-                  <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey">test details</p>
+                  <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-regular text-color-grey"></p>
                   <div className="spacer-3"></div>
                 </div>
                 <div className="w-layout-grid grid-3-column">
                   <div id="w-node-_7f94c08f-c4f5-73a9-53bd-a9a34b634135-51c2df9a" className="grid-content-tools">
                     <div><img src="images/victory_4994377.png" loading="lazy" sizes="(max-width: 479px) 48px, 64px" srcSet="images/victory_4994377-p-500.png 500w, images/victory_4994377.png 512w" alt="" className="tools-icon"/>
                       <div className="spacer-0-5"></div>
-                      <h4 className="heading-style-h3">Dictionary</h4>
+                      <h4 className="heading-style-h3">ශබ්දකෝෂය  </h4>
                       <div className="spacer-0-5"></div>
-                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-medium">Search by sign, topic, and handshape</p>
+                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-medium">ලකුණ, මාතෘකාව සහ අත් හැඩය අනුව සොයන්න </p>
                     </div>
                     <div className="spacer-1"></div>
-                    <a href="#" className="button is-secondary w-button">Explore</a>
+                    <a href="#" className="button is-secondary w-button">ගවේෂණය කරන්න  </a>
                   </div>
                   <div id="w-node-_59c0ea51-edbb-c82d-2cb4-10c9c7e3bb66-51c2df9a" className="grid-content-tools">
                     <div><img src="images/3_9476579.png" loading="lazy" sizes="(max-width: 479px) 48px, 64px" srcSet="images/3_9476579-p-500.png 500w, images/3_9476579.png 512w" alt="" className="tools-icon"/>
                       <div className="spacer-0-5"></div>
-                      <h4 className="heading-style-h3">Sign of the day</h4>
+                      <h4 className="heading-style-h3">දවසේ ලකුණ  </h4>
                       <div className="spacer-0-5"></div>
-                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-medium">Have a sign delivered to your inbox daily</p>
+                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-medium">ඔබේ එන ලිපි වෙත දිනපතා ලකුණක් ලබා දෙන්න</p>
                     </div>
                     <div className="spacer-1"></div>
-                    <a href="#" className="button is-secondary w-button">Explore</a>
+                    <a href="#" className="button is-secondary w-button">ගවේෂණය කරන්න
+                    </a>
                   </div>
                   <div id="w-node-cc4eee2b-a3ee-61e6-c126-5abb76aebbd3-51c2df9a" className="grid-content-tools">
                     <div><img src="images/victory_2609024.png" loading="lazy" sizes="(max-width: 479px) 48px, 64px" srcSet="images/victory_2609024-p-500.png 500w, images/victory_2609024.png 512w" alt="" className="tools-icon"/>
                       <div className="spacer-0-5"></div>
-                      <h4 className="heading-style-h3">Learning Games</h4>
+                      <h4 className="heading-style-h3">ක්‍රීඩා  ඉගෙනීම්
+                      </h4>
                       <div className="spacer-0-5"></div>
-                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-medium">Review signs by topic or handshape</p>
+                      <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-medium">මාතෘකාව හෝ අත් හැඩය අනුව සලකුණු සමාලෝචනය කරන්න
+                      </p>
                     </div>
                     <div className="spacer-1"></div>
-                    <a href="#" className="button is-secondary w-button">Explore</a>
+                    <a href="#" className="button is-secondary w-button">ගවේෂණය කරන්න
+                    </a>
                   </div>
                 </div>
               </div>
@@ -232,11 +241,11 @@ export default function Home() {
                 <div className="w-layout-grid grid-2-column is-home-asl">
                   <div id="w-node-c35b624b-0769-7429-edb0-ec63699a188e-51c2df9a" className="grid-content-right"></div>
                   <div id="w-node-c35b624b-0769-7429-edb0-ec63699a1891-51c2df9a" className="grid-content-left">
-                    <h1 className="heading-style-h2">For the Classroom</h1>
+                    <h1 className="heading-style-h2">පන්ති කාමරය</h1>
                     <div className="spacer-custom1"></div>
-                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-large">Make ASL come alive with video-based and interactive learning tools, optimized for schools.</p>
+                    <p data-delay="0.4" text-split="" lines-slide-up="" className="text-size-large">පාසල් සඳහා ප්‍රශස්ත කර ඇති වීඩියෝ පදනම් වූ සහ අන්තර්ක්‍රියාකාරී ඉගෙනුම් මෙවලම් සමඟින් SSL ජීවමාන කරන්න </p>
                     <div className="spacer-custom1"></div>
-                    <a href="#" className="button w-button">Learn more</a>
+                    <a href="#" className="button w-button">තවත් හදාරන්න</a>
                   </div>
                 </div>
               </div>
@@ -256,12 +265,12 @@ export default function Home() {
                     </div>
                     <div className="margin-top margin-small">
                       <div className="footer_link-list">
-                        <a href="tel:+1234567890" className="text-style-link">+123 456-7890</a>
-                        <a href="mailto:hello@finsweet.com" className="text-style-link">hello@signschool.com</a>
+                        <a href="tel:+1234567890" className="text-style-link">070-2121424</a>
+                        <a href="mailto:hello@finsweet.com" className="text-style-link">Hello@SignCraft.com</a>
                       </div>
                     </div>
                     <div className="footer_address-wrapper">
-                      <div>10138 Ne Evergreen PKWY Apt 243Hillsboro Or 97124</div>
+                      <div>1013 Ne Olcut Street Borupana Rathmalana</div>
                     </div>
                   </div>
                 </div>
@@ -274,7 +283,7 @@ export default function Home() {
             <div className="container-large">
               <div className="footer_bottom-row">
                 <div className="footer_bottom-left-content">
-                  <div>©2022 </div>
+                  <div>©2024 </div>
                 </div>
                 <div id="w-node-_0e235910-451e-a05f-aab0-44f502918f63-02918f22" className="social-wrapper">
                   <a aria-label="Facebook link" href="#" target="_blank" className="social-link w-inline-block">

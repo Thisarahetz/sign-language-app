@@ -25,10 +25,10 @@ function Learn() {
             <div className="container-large">
               <div className="padding-section-small">
                 <div className="section_component">
-                  <h2 className="heading-style-h2">Resources</h2>
+                  <h2 className="heading-style-h2">සම්පත්</h2>
                   <div className="spacer-3"></div>
                   <div className="resource-item-warapper">
-                    <h3 className="heading-style-h3">Topics</h3>
+                    <h3 className="heading-style-h3">මාතෘකාව </h3>
                     <div className="spacer-2"></div>
                     <div className="w-layout-grid grid-3-column is-resources-items-wrapper">
                       {query?.data?.data
@@ -49,7 +49,7 @@ function Learn() {
                   </div>
                   <div className="resource-item-warapper">
                     <div className="spacer-2"></div>
-                    <h3 className="heading-style-h3">Grammar</h3>
+                    <h3 className="heading-style-h3"> අක්ෂර මාලාව   </h3>
                     <div className="spacer-2"></div>
                     <div className="w-layout-grid grid-3-column is-resources-items-wrapper">
                       {query?.data?.data
@@ -70,7 +70,7 @@ function Learn() {
                   </div>
                   <div className="resource-item-warapper">
                     <div className="spacer-2"></div>
-                    <h3 className="heading-style-h3">Games</h3>
+                    <h3 className="heading-style-h3">පැන විසඳුම් </h3>
                     <div className="spacer-2"></div>
                     <div className="w-layout-grid grid-3-column is-resources-items-wrapper">
                       {query?.data?.data

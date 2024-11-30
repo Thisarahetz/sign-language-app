@@ -26,10 +26,10 @@ export default function Nav() {
           <div className="nav_container">
             <a href="/" className="nav_logo-link w-nav-brand">
               <img
-                src="images/solidcore-logo-360x250-1.png"
+                src="images/sign2.png"
                 loading="lazy"
                 sizes="64.40625px"
-                srcSet="images/solidcore-logo-360x250-1-p-500.png 500w, images/solidcore-logo-360x250-1.png 577w"
+                srcSet="images/sign2.png 600w, images/sign2.png 577w"
                 alt=""
                 className="nav_logo"
               />

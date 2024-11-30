@@ -9,7 +9,7 @@ function Dashboard() {
           <div className="container-large">
             <div className="padding-section-small">
               <div className="section_component">
-                <h2 className="heading-style-h3">Dashboard</h2>
+                <h2 className="heading-style-h3">උපකරණ පුවරුව</h2>
                 <div className="spacer-3"></div>
                 <div className="dashborad-wrapper">
                   <div className="w-layout-grid grid-repeat-column is-dashboard">
