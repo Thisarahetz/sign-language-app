@@ -75,7 +75,7 @@ export default function VideoResultModal({
             ) : (
               // Video and result content
               <>
-                {/* <video
+                <video
                   src={videoUrl}
                   controls
                   style={{
@@ -84,7 +84,7 @@ export default function VideoResultModal({
                     borderRadius: "8px",
                     marginBottom: "16px",
                   }}
-                /> */}
+                />
                 <Box display="flex" alignItems="center" gap={1} mb={2}>
                   {result ? (
                     <Typography variant="h6" color="success.main">

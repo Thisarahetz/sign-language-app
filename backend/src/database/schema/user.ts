@@ -34,7 +34,7 @@ export const user = pgTable('users', {
 
 
 export const userRelation = relations(user, ({ many }) => ({
-  userToScore: many(score)
+  scoreToUser: many(score)
 }));
 
 

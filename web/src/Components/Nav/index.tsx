@@ -6,6 +6,8 @@ export default function Nav() {
   const logoutUser = useUserStore((state) => state.logout);
   const navigate = useNavigate();
 
+  console.log(user);
+
   //logout
   const logout = () => {
     logoutUser();

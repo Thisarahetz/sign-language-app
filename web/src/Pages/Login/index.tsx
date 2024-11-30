@@ -17,7 +17,6 @@ export default function Login() {
   const navigate = useNavigate();
   const setUser = useUserStore((state) => state.setUser);
 
-
   const loginGoogle = useGoogleLogin({
     onSuccess: (codeResponse) => {
       console.log("Login Success:", codeResponse);
@@ -36,15 +35,13 @@ export default function Login() {
           .then((res) => {
             console.log(res.data);
             setUser({
-       
-                success: true,
-                data: {
-                  id: res.data.id,
-                  name: res.data.name,
-           
+              success: true,
+              data: {
+                id: res.data.id,
+                name: res.data.name,
               },
             });
-  
+
             navigate("/dashboard");
           })
           .catch((err) => console.log(err));
@@ -52,7 +49,6 @@ export default function Login() {
     },
     onError: (error) => console.log("Login Failed:", error),
   });
-
 
   const [state, setState] = useState({
     email: "",
@@ -72,17 +68,14 @@ export default function Login() {
   function loginFacebook() {
     fbLogin().then((response) => {
       if (response.status === "connected") {
-        
         getFacebookProfile().then((profile) => {
           console.log(profile);
           setUser({
-     
-              success: true,
-              data: {
-                id: profile.id,
-                name: profile.name,
-              },
-            
+            success: true,
+            data: {
+              id: profile.id,
+              name: profile.name,
+            },
           });
 
           navigate("/dashboard");
@@ -95,17 +88,16 @@ export default function Login() {
   }
 
   const signIn = useMutation({
-    mutationFn: (data: any) => SignInApiCall(data.email, data.password),
+    mutationFn: async (data: any) => await SignInApiCall(data.email, data.password),
     onSuccess: (data) => {
-      console.log(data);
+      localStorage.setItem("token", data?.data?.access_token);
+     
       setUser({
-       
-          success: true,
-          data: {
-            id: data.id,
-            name: data.email
-          },
-        
+        success: true,
+        data: {
+          id: data?.data?.id,
+          name: data?.data?.email,
+        },
       });
       navigate("/dashboard");
     },
