@@ -1,9 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-	 width="800px" height="800px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-<path fill="#231F20" d="M60,20h-4v-4.031c0-2.211-1.789-4-4-4H4c-2.211,0-4,1.789-4,4V48c0,2.211,1.789,4,4,4h48
-	c2.211,0,4-1.789,4-4v-4h4c2.211,0,4-1.789,4-4V24C64,21.789,62.211,20,60,20z M32,40H12V24h28L32,40z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <path d="M32 4C33.1 4 34 4.9 34 6V38H38V10C38 8.9 38.9 8 40 8C41.1 8 42 8.9 42 10V38H46V14C46 12.9 46.9 12 48 12C49.1 12 50 12.9 50 14V38H54C55.1 38 56 38.9 56 40C56 43.3 53.3 46 50 46H42V56C42 57.1 41.1 58 40 58H36C34.9 58 34 57.1 34 56V46H24C20.7 46 18 43.3 18 40V28C18 26.9 18.9 26 20 26C21.1 26 22 26.9 22 28V38H26V6C26 4.9 26.9 4 28 4C29.1 4 30 4.9 30 6V38H32V6C32 4.9 32.9 4 34 4Z" fill="#555"/>
 </svg>
