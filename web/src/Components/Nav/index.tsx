@@ -39,12 +39,16 @@ export default function Nav() {
             <nav role="navigation" className="nav_menu w-nav-menu">
               <div className="nav_link-wrapper">
                 <div className="nav_link-list">
-                  <a href="/learn" className="nav_link w-nav-link">
-                    Learn
-                  </a>
-                  <a href="/dashboard" className="nav_link w-nav-link">
-                    Dashboard
-                  </a>
+                  {user.success && (
+                    <>
+                      <a href="/learn" className="nav_link w-nav-link">
+                        Learn
+                      </a>
+                      <a href="/dashboard" className="nav_link w-nav-link">
+                        Dashboard
+                      </a>
+                    </>
+                  )}
                   <div
                     data-hover="false"
                     data-delay="0"
