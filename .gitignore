@@ -2,3 +2,4 @@
 node_modules
 /sign-detection-api/downloads
 /backend/drizzle/*
+/backend/drizzle

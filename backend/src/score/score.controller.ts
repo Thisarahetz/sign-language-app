@@ -17,12 +17,18 @@ export class ScoreController {
   }
 
   @Get()
-  findAllScoreByUser(
+  findScoreByUser(
     @Req() req : any
   ) {
     return this.scoreService.findAllScoreByUser(
       req.user.id
     );
+  }
+
+  //all score
+  @Get('all')
+  findAll() {
+    return this.scoreService.findAll();
   }
 
   @Get(':id')

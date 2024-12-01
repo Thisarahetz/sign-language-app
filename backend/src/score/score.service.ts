@@ -11,7 +11,7 @@ export class ScoreService {
   constructor(
     @Inject(PG_CONNECTION) private conn: NodePgDatabase<typeof schema>,
   ) {}
-  create(createScoreDto: CreateScoreDto, userId: number) {
+  async create(createScoreDto: CreateScoreDto, userId: number) {
     try {
       const { score, history ,status ,total_time_spent} = createScoreDto;
 
@@ -20,10 +20,10 @@ export class ScoreService {
         score: score,
         history: history,
         status: status,
-        total_time_spent: total_time_spent,
+        total_time_spent: total_time_spent.toFixed(2),
       };
 
-      return this.conn.insert(schema.score).values(scoreData).execute();
+      return await this.conn.insert(schema.score).values(scoreData).execute();
     } catch (error) {
       throw error;
     }
@@ -57,6 +57,25 @@ export class ScoreService {
     } catch (error) {
       throw error;
     }
+  }
+
+  async findAll() {
+   try {
+    const data = await this.conn
+    .select()
+    .from(schema.score)
+    .execute();
+
+    return {
+      status: 200,
+      message: 'Scores fetched successfully',
+      data: data,
+    };
+    
+   } catch (error) {
+      throw error;
+    
+   }
   }
 
   findOne(id: number) {

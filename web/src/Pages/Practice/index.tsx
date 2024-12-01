@@ -8,12 +8,13 @@ import playCircle from "../../assets/icon/play-circle-svgrepo-com.svg";
 import stopVideoIcon from "../../assets/icon/stop-circle-svgrepo-com.svg";
 import dawnlodIcon from "../../assets/icon/save-svgrepo-com.svg";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { getResourceId } from "../../Api/Services/learn";
 import { uploadFile } from "../../firebase";
 import CustomizedDialogs from "../../Components/Model";
 import { GetDetection, response } from "../../Api/Services/Detection";
 import { toast } from "sonner";
+import { createScore, getDashbordTabelById } from "../../Api/Services/dashbord";
 
 const VideoPreview = (props: { stream: MediaStream }) => {
   const stream = props.stream;
@@ -90,6 +91,8 @@ function Practice() {
   let [audioOnOff, setAudio] = useState(true);
   const [isLoader, setIsLoader] = useState(false);
   const [isPredicted, setIsPredicted] = useState(false);
+  //use ref for date
+  const date = useRef(new Date());
   const [predictedResult, setPredictedResult] = useState<response>(
     {} as response
   );
@@ -105,11 +108,36 @@ function Practice() {
     queryFn: () => getResourceId(resourse_id),
   });
 
+  // Mutations
+  const mutation = useMutation({
+    mutationFn: (data: any) => createScore(data),
+
+    onSuccess: () => {
+      toast.success("Score created successfully");
+    },
+
+    onError: () => {
+      toast.error("Something went wrong Score");
+    },
+  });
+
+
+  const { data, mutate: getDetection ,isSuccess} = useMutation({
+    mutationFn: (data: any) => GetDetection(data),
+
+    onSuccess: () => {
+      toast.success("Sign detection successfully");
+    },
+
+    onError: () => {
+      toast.error("Something went wrong detection");
+    },
+  });
+
   useEffect(() => {
     query.refetch();
+    date.current = new Date();
   }, []);
-
-  console.log(query?.data?.data);
 
   // Refs to store the start/stop recording functions
   const startRecordingRef = useRef(() => {});
@@ -214,8 +242,8 @@ function Practice() {
 
   const dawnloadWrapper = async () => {
     if (mediaBlobUrl) {
-     setIsLoader(true);
-     setIsPredicted(true);
+      setIsLoader(true);
+      setIsPredicted(true);
       const fileName = `video-${new Date().getTime()}.webm`;
 
       // Upload the file to Firebase Storage
@@ -226,22 +254,32 @@ function Practice() {
 
       const url = await uploadFile(file, fileName);
 
-
-
-      const data = await GetDetection({
+      getDetection({
         image_url: url,
-        answer: predictedResult.predicted || "",
-      });
-
-      if (data.result) {
-        setIsPredicted(false);
+          answer: predictedResult.predicted || "",
+      })
+     
+    if(isSuccess){
+      setIsPredicted(false);
         setPredictedResult(data);
+        const score = {
+          score: 1,
+          history: {
+            given_answer: predictedResult.predicted,
+            correct_answer: data.predicted,
+            is_correct: data.result,
+            url: url
+          },
+          status: data.result ? 'is_complete' : 'is_incomplete',
+          total_time_spent: (new Date().getTime() - date.current.getTime()) / 60000, // time spent in minutes
+        };
+
+        mutation.mutate(score);
+    }
+
+
+        
       
-      
-      } else {
-       ;
-        toast.error("Something went wrong");
-      }
     }
   };
 
@@ -511,9 +549,8 @@ function Practice() {
                           </button>
                         }
                         {
-                         
-                            <input 
-                            type="text" 
+                          <input
+                            type="text"
                             placeholder="Enter your prediction"
                             style={{
                               padding: "10px",
@@ -521,7 +558,6 @@ function Practice() {
                               border: "1px solid #000",
                               margin: "10px",
                             }}
-                           
                             onChange={(e) => {
                               setPredictedResult({
                                 ...predictedResult,
@@ -529,10 +565,7 @@ function Practice() {
                               });
                             }}
                           />
-                 
-                          
                         }
-                
 
                         {/* <button
                           onClick={videoReplay}
