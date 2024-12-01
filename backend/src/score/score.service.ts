@@ -20,7 +20,7 @@ export class ScoreService {
         score: score,
         history: history,
         status: status,
-        total_time_spent: total_time_spent.toFixed(2),
+        total_time_spent: parseInt(total_time_spent.toString()),
       };
 
       return await this.conn.insert(schema.score).values(scoreData).execute();

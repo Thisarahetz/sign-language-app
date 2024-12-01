@@ -66,7 +66,7 @@ def prepare_input(sequence):
 thresholdValue = 0.6
 
 # Answers array
-lang_answer_array = ['a', 'aa', 'ea', 'e']
+lang_answer_array = ['a', 'aa']
 
 @app.route('/detection/lang/v2', methods=['POST'])
 def lang_detection():

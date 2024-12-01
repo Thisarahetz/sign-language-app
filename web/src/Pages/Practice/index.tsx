@@ -112,27 +112,12 @@ function Practice() {
   const mutation = useMutation({
     mutationFn: (data: any) => createScore(data),
 
-    onSuccess: () => {
-      toast.success("Score created successfully");
-    },
-
     onError: () => {
       toast.error("Something went wrong Score");
     },
   });
 
 
-  const { data, mutate: getDetection ,isSuccess} = useMutation({
-    mutationFn: (data: any) => GetDetection(data),
-
-    onSuccess: () => {
-      toast.success("Sign detection successfully");
-    },
-
-    onError: () => {
-      toast.error("Something went wrong detection");
-    },
-  });
 
   useEffect(() => {
     query.refetch();
@@ -246,40 +231,50 @@ function Practice() {
       setIsPredicted(true);
       const fileName = `video-${new Date().getTime()}.webm`;
 
-      // Upload the file to Firebase Storage
-      const file = await fetch(mediaBlobUrl).then((res) => res.blob());
+      try {
+        // Upload the file to Firebase Storage
+        const file = await fetch(mediaBlobUrl).then((res) => res.blob());
 
-      //tosat
-      toast.success("Video Uploaded Successfully");
+        // Toast
+        toast.success("Video Uploaded Successfully");
 
-      const url = await uploadFile(file, fileName);
+        const url = await uploadFile(file, fileName);
 
-      getDetection({
-        image_url: url,
+        const response = await GetDetection({
+          image_url: url,
           answer: predictedResult.predicted || "",
-      })
-     
-    if(isSuccess){
-      setIsPredicted(false);
-        setPredictedResult(data);
-        const score = {
-          score: 1,
-          history: {
-            given_answer: predictedResult.predicted,
-            correct_answer: data.predicted,
-            is_correct: data.result,
-            url: url
-          },
-          status: data.result ? 'is_complete' : 'is_incomplete',
-          total_time_spent: (new Date().getTime() - date.current.getTime()) / 60000, // time spent in minutes
-        };
+        });
 
-        mutation.mutate(score);
-    }
-
-
+        if (response) {
+          toast.success("Sign detection successfully");
+          const data = {
+            predicted: response?.predicted,
+            result: response?.result,
+          };
         
-      
+
+          setIsPredicted(false);
+          setPredictedResult(data);
+          const score = {
+            score: 1,
+            history: {
+              given_answer: predictedResult.predicted,
+              correct_answer: data.predicted,
+              is_correct: data.result,
+              url: url,
+            },
+            status: data.result ? "is_completed" : "is_incomplete",
+            total_time_spent: (
+              (new Date().getTime() - date.current.getTime()) /
+              60000
+            ).toFixed(2),
+          };
+
+          mutation.mutate(score);
+        }
+      } catch (error) {
+        toast.error("An error occurred during the process");
+      }
     }
   };
 
