@@ -9,6 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { getSinhalaLetter } from "../../Utility/helpers";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -97,7 +98,7 @@ export default function VideoResultModal({
                   )}
                 </Box>
                 <Typography variant="body1" color="text.secondary">
-                  <strong>Predicted Sign:</strong> {predicted?.toUpperCase()}
+                  <strong>Predicted Sign:</strong> {getSinhalaLetter(predicted)}
                 </Typography>
               </>
             )}

@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getDashbordTabelById } from "../../Api/Services/dashbord";
 import CustomizedDialogs from "../../Components/Model";
 import "./TableStyles.css";
+import { getSinhalaLetter } from "../../Utility/helpers";
 
 function Dashboard() {
   const [modelOpen, setModelOpen] = useState({
@@ -185,8 +186,8 @@ function Dashboard() {
                           <td>{item.id}</td>
                           <td>{item.user_id}</td>
                           <td>{item.score}</td>
-                          <td>{item.history.given_answer}</td>
-                          <td>{item.history.correct_answer}</td>
+                          <td>{getSinhalaLetter(item.history.given_answer)}</td>
+                          <td>{getSinhalaLetter(item.history.correct_answer)}</td>
                           <td
                             className={
                               item.history.is_correct
