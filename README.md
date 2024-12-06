@@ -1,4 +1,5 @@
 # Sinhala Sign Language Learning Platform
+![Screenshot 2024-12-06 at 7 01 13 PM](https://github.com/user-attachments/assets/9b971044-5a26-43f2-a9c8-f3838ec9d2af)
 
 Welcome to the Sinhala Sign Language Learning Site! This platform is designed to help users learn and practice Sinhala sign language interactively using their cameras. 
 
@@ -68,3 +69,11 @@ We welcome contributions! If you'd like to improve the site or add new features:
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
+
+![Screenshot 2024-12-06 at 7 00 38 PM](https://github.com/user-attachments/assets/87ffd873-acd9-4415-b2c5-7543ed9c4130)
+![Screenshot 2024-12-06 at 7 00 48 PM](https://github.com/user-attachments/assets/83244259-7393-4c58-b5b3-63990d1015ed)
+![Screenshot 2024-12-06 at 7 01 00 PM](https://github.com/user-attachments/assets/8e06ae5c-1b80-464d-9e22-bdeeeb0409f8)
+![Screenshot 2024-12-06 at 6 58 35 PM](https://github.com/user-attachments/assets/a5349e6c-a7b3-48d5-b603-05ece20ebdf8)
+![Screenshot 2024-12-06 at 7 00 21 PM](https://github.com/user-attachments/assets/73c949af-e21d-4516-b153-2cbee214ebf8)
+![Screenshot 2024-12-06 at 7 00 24 PM](https://github.com/user-attachments/assets/8f62be30-0498-4e10-8768-9d3e1890f586)
+
